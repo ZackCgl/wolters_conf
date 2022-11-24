@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import Header from "../Components/Header";
 
-const REDIRECT_URL = "https://rubyexact-zackcgl.vercel.app/oauth2/callback"
+const REDIRECT_URL = "https://rubyexact-zackcgl.vercel.app/"
 
 const Home: NextPage = () => {
  const loginExact = () => {
