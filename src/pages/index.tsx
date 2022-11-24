@@ -29,9 +29,7 @@ const Home: NextPage = () => {
   };
 
   const handleLogout = () => {
-    window.location.replace(
-      "http://localhost:3000"
-    );
+    window.location.replace(REDIRECT_URL as string);
   };
 
 
