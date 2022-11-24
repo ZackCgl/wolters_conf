@@ -10,7 +10,6 @@ const REDIRECT_URL = "https://rubyexact.vercel.app/oauth2/callback"
 
 const Home: NextPage = () => {
  const loginExact = () => {
- 
   window.location.replace(`https://start.exactonline.nl/api/oauth2/auth?client_id=fcf6876c-792d-4478-bbef-aea8d1d73040&redirect_uri=${REDIRECT_URL}&response_type=code`)
 
  }
