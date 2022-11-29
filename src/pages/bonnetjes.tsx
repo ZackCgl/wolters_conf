@@ -51,15 +51,15 @@ function Bonnetjes() {
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
-              var parser = new DOMParser()
-              var el = parser.parseFromString(xmlhttp.responseText, "text/html");
+              const parser = new DOMParser()
+              const el = parser.parseFromString(xmlhttp.responseText, "text/html");
               const Firstsuppliers:any = el.childNodes[1]?.textContent
-              let xmlDoc2;
-              var parseHtml = new DOMParser();
-              xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
+             
+              const parseHtml = new DOMParser();
+              const xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
               const suppliers:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
               console.log(suppliers)
-              let suppArray:any = []
+              const suppArray:any = []
               for(let i= 0; i < 21; i++){
                 const demension:any = (suppliers.getElementsByTagName("dimension")[i])
                 suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)

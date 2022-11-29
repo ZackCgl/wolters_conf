@@ -58,12 +58,12 @@ const handleLogout = () => {
     xmlhttp.onreadystatechange = () => {
       if (xmlhttp.readyState == 4) {
         if (xmlhttp.status == 200) {
-          var parser = new DOMParser()
-          var el = parser.parseFromString(xmlhttp.responseText, "text/html");
+          const parser = new DOMParser()
+          const el = parser.parseFromString(xmlhttp.responseText, "text/html");
           const offices:any = el.childNodes[1]?.textContent
-          let xmlDoc2;
-           var parseHtml = new DOMParser();
-          xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
+         
+           const parseHtml = new DOMParser();
+          const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
           const XML_ROW = (xmlDoc2.getElementsByTagName("offices")[0])
           console.log(XML_ROW)
           setOffice(XML_ROW?.getElementsByTagName("office")[0]?.attributes?.[0]?.nodeValue)
