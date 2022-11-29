@@ -1,27 +1,78 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-
-import { trpc } from "../utils/trpc";
 import Header from "../Components/Header";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
+import { OfficesSoap } from "../../soap/officesSoap";
+import { customersSoap } from "../../soap/customersSoap";
 
+
+//DEV REDIRECT_URL
 const REDIRECT_URL = process.env.NEXT_PUBLIC_REDIRECT_URL
 
 const Home: NextPage = () => {
   const [accesToken, setAccesToken] = useState();
+  const [office, setOffice] = useState<any>("Geen");
   const router = useRouter();
+  
   useEffect(() => {
     let accestoken: any = "";
-
     const firstsplit = router.asPath.split("access_token=");
     const secondsplit = firstsplit[1]?.split("&token_type")[0];
     accestoken = secondsplit;
     setAccesToken(accestoken);
   });
+
+
+  function getOffices() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(
+      "POST",
+      "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
+      true
+    );
+    const sr = OfficesSoap({accesToken})
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+          var parser = new DOMParser()
+          var el = parser.parseFromString(xmlhttp.responseText, "text/html");
+          const offices:any = el.childNodes[1]?.textContent
+          let xmlDoc2;
+           var parseHtml = new DOMParser();
+          xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
+          const XML_ROW = (xmlDoc2.getElementsByTagName("offices")[0])
+          setOffice(XML_ROW?.getElementsByTagName("office")[0]?.attributes?.[0]?.nodeValue)
+        }
+      }
+    };
+    // Send the POST request
+    xmlhttp.setRequestHeader("Content-Type", "text/xml");
+    xmlhttp.send(sr);
+  }
+
+  function getCustomers(){
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(
+      "POST",
+      "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
+      true
+    );
+    const sr = customersSoap({accesToken})
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+          let xmlDoc = xmlhttp.responseXML;
+          console.log(xmlDoc);
+        }
+      }
+    };
+    // Send the POST request
+    xmlhttp.setRequestHeader("Content-Type", "text/xml");
+    xmlhttp.send(sr);
+  }
 
   const handleLogin = () => {
     window.location.replace(
@@ -32,8 +83,6 @@ const Home: NextPage = () => {
   const handleLogout = () => {
     window.location.replace(REDIRECT_URL as string);
   };
-
-
 
   return (
     <>
@@ -49,7 +98,19 @@ const Home: NextPage = () => {
           {accesToken && <Sidebar />}
          
         </div>
-        {accesToken && <div className="text-white"><p>Welkom bij Ruby Finance</p></div>}
+        {accesToken && <button
+        className="mr-2 mt-4 h-9 rounded-full bg-white/10 px-10 font-semibold text-white no-underline transition hover:bg-white/20"
+       onClick={getOffices}
+      >
+     Office 1.
+      </button>}
+      {accesToken && <button
+        className="mr-2 mt-4 h-9 rounded-full bg-white/10 px-10 font-semibold text-white no-underline transition hover:bg-white/20"
+       onClick={getCustomers}
+      >
+     Cost 2.
+      </button>}
+      <p className="text-white">Naam van de office: {office}</p>
         </div>
         {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           
@@ -82,5 +143,9 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+
+
+
 
 
