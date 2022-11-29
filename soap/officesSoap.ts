@@ -1,8 +1,11 @@
 
 // build SOAP request
 
+interface Props{
+    accesToken: string;
+}
 
-export const OfficesSoap = ({accesToken}:any) => {
+export const OfficesSoap = ({accesToken}:Props) => {
     const sr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:twin="http://www.twinfield.com/">' +
     "<soapenv:Header> " +
     "<twin:Header> " +
