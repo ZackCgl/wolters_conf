@@ -1,4 +1,3 @@
-import { Head } from 'next/document';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
@@ -8,7 +7,7 @@ import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
 
-function bonnetjes() {
+function Bonnetjes() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [fullsplit, setFullSplit] = useState<string>("");
     const [suppliers, setSuppliers] = useState<string[]>();
@@ -124,6 +123,6 @@ function bonnetjes() {
       );
 }
 
-export default bonnetjes
+export default Bonnetjes
 
 
