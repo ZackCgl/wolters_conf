@@ -1,4 +1,3 @@
-import React from 'react'
 import {FiSettings} from "react-icons/fi"
 import {AiOutlineQuestionCircle} from "react-icons/ai"
 

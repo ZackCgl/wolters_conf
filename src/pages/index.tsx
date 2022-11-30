@@ -1,22 +1,20 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import Header from "../Components/Header";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { OfficesSoap } from "../../soap/officesSoap";
-import { customersSoap } from "../../soap/customersSoap";
-import { REDIRECT_URL } from "../../soap/redirect";
+import { companyAtom, REDIRECT_URL } from "../../soap/redirect";
 import Sidebar from "../Components/Sidebar";
+import { useAtom } from 'jotai'
 
 //DEV REDIRECT_URL
 
-
 const Home: NextPage = () => {
   const [accesToken, setAccesToken] = useState<string>("");
+  const [companyCode, setCompanyCode] = useAtom(companyAtom)
   const [fullsplit, setFullSplit] = useState<string>("");
   const [office, setOffice] = useState<string | null | undefined>("Geen");
-  const [suppliers, setSuppliers] = useState<string[]>();
   const router = useRouter();
   
   useEffect(() => {
@@ -64,8 +62,8 @@ const handleLogout = () => {
          
            const parseHtml = new DOMParser();
           const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
-          const XML_ROW = (xmlDoc2.getElementsByTagName("offices")[0])
-          console.log(XML_ROW)
+          const XML_ROW:any = (xmlDoc2.getElementsByTagName("offices")[0])
+          setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
           setOffice(XML_ROW?.getElementsByTagName("office")[0]?.attributes?.[0]?.nodeValue)
         }
       }

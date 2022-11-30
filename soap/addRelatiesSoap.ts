@@ -3,9 +3,10 @@
 interface Props{
     accesToken: string;
     companyCode: string;
+    naam: String;
 }
 
-export const customersSoap = ({accesToken, companyCode}:Props) => {
+export const addRelatiesSoap = ({accesToken, companyCode, naam}:Props) => {
      const sr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:twin="http://www.twinfield.com/">' +
     "<soapenv:Header> " +
     "<twin:Header> " +
@@ -15,7 +16,7 @@ export const customersSoap = ({accesToken, companyCode}:Props) => {
     "</soapenv:Header>" +
     "<soapenv:Body>" +
     "<twin:ProcessXmlString>" +
-    `<twin:xmlRequest><![CDATA[<read><type>dimensions</type><office>${companyCode}</office><dimtype>CRD</dimtype></read>]]></twin:xmlRequest>` +
+    `<twin:xmlRequest><![CDATA[<dimension><office>${companyCode}</office><type>DEB</type><name>${naam}</name></dimension>]]></twin:xmlRequest>` +
     "</twin:ProcessXmlString>" +
     "</soapenv:Body>" +
     "</soapenv:Envelope>";

@@ -5,7 +5,7 @@ interface Props{
     companyCode: string;
 }
 
-export const customersSoap = ({accesToken, companyCode}:Props) => {
+export const relatiesSoap = ({accesToken, companyCode}:Props) => {
      const sr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:twin="http://www.twinfield.com/">' +
     "<soapenv:Header> " +
     "<twin:Header> " +
@@ -15,7 +15,7 @@ export const customersSoap = ({accesToken, companyCode}:Props) => {
     "</soapenv:Header>" +
     "<soapenv:Body>" +
     "<twin:ProcessXmlString>" +
-    `<twin:xmlRequest><![CDATA[<read><type>dimensions</type><office>${companyCode}</office><dimtype>CRD</dimtype></read>]]></twin:xmlRequest>` +
+    `<twin:xmlRequest><![CDATA[<read><type>dimensions</type><office>${companyCode}</office><dimtype>DEB</dimtype></read>]]></twin:xmlRequest>` +
     "</twin:ProcessXmlString>" +
     "</soapenv:Body>" +
     "</soapenv:Envelope>";
