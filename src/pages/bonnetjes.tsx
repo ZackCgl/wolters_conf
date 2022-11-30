@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { customersSoap } from '../../soap/customersSoap';
 import { REDIRECT_URL } from '../../soap/redirect';
 import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
 
 
 
@@ -76,25 +77,28 @@ function Bonnetjes() {
       }
       return (
         <>
-         
+         <div className='flex flex-col'>
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex flex-col min-h-screen bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-            <div className="flex ml-4 mt-20">
-            
+          <main className="flex min-h-screen bg-gradient-to-b from-[#233cfeb1] to-[#111c6fdf]">
+          <div>
+          <Sidebar />
+         </div>
+            <div className="flex ml-8 mt-20">
               
-             
-            
-           
-            
-          {accesToken && <div><p className="text-white">Crediteuren: {suppliers?.map((sup:any, i:any) => {
-            return <div key={i}><p>{sup}</p></div>
-          })}</p></div>}
-          
-          </div>
-          
-            
-            {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+              {/*with acces*/}  
+              {accesToken && 
+              <div>
+                <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
+                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
+                return <div key={i}><p>{sup}</p></div>
+              })}</p>
+              </div>}
               
+            </div>
+          
+            {/*without acces*/}  
+            {!accesToken && 
+            <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
                <Link
                   className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
@@ -119,6 +123,7 @@ function Bonnetjes() {
             
           
           </main>
+          </div>
         </>
       );
 }

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { OfficesSoap } from "../../soap/officesSoap";
 import { customersSoap } from "../../soap/customersSoap";
 import { REDIRECT_URL } from "../../soap/redirect";
+import Sidebar from "../Components/Sidebar";
 
 //DEV REDIRECT_URL
 
@@ -87,16 +88,20 @@ const handleLogout = () => {
         <meta name="description" content="Boekhouden voor iedereen" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className="flex flex-col">
       <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-      <main className="flex flex-col min-h-screen bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="flex ml-4 mt-20">
+      <main className="flex min-h-screen bg-gradient-to-b from-[#233cfeb1] to-[#111c6fdf]">
         <div>
-         
-         
+          <Sidebar />
         </div>
-       
-      {accesToken && <div className="mr-10"><p className="text-white flex-col">Office:</p><p className="text-white">{office}</p></div>}
+        <div className="flex ml-8 mt-20">
+        {accesToken && 
+          <div className="">
+            <p className="text-white flex-col font-bold text-3xl">Administratie</p>
+            <p className="text-white font-extralight text-2xl">{office}</p>
+          </div>}
         </div>
+
         {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
@@ -123,6 +128,7 @@ const handleLogout = () => {
         
       
       </main>
+      </div>
     </>
   );
 };
