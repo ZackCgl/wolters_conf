@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { customersSoap } from '../../soap/customersSoap';
 import { REDIRECT_URL } from '../../soap/redirect';
 import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
+
 
 
 function Bonnetjes() {
@@ -77,15 +77,15 @@ function Bonnetjes() {
       return (
         <>
          
-          <Header loginExact={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex flex-col min-h-screen bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-            <div className="flex mt-16">
+            <div className="flex ml-4 mt-20">
             
-              {accesToken && <Sidebar fullSplit={fullsplit}/>}
+              
              
             
            
-            {accesToken && <div className="mr-10"><h2 className="text-white font-bold flex-col">Bonnetjes</h2></div>}
+            
           {accesToken && <div><p className="text-white">Crediteuren: {suppliers?.map((sup:any, i:any) => {
             return <div key={i}><p>{sup}</p></div>
           })}</p></div>}

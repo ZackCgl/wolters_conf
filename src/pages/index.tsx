@@ -4,7 +4,6 @@ import Link from "next/link";
 import Header from "../Components/Header";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
 import { OfficesSoap } from "../../soap/officesSoap";
 import { customersSoap } from "../../soap/customersSoap";
 import { REDIRECT_URL } from "../../soap/redirect";
@@ -88,14 +87,14 @@ const handleLogout = () => {
         <meta name="description" content="Boekhouden voor iedereen" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header loginExact={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+      <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
       <main className="flex flex-col min-h-screen bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="flex mt-16">
+        <div className="flex ml-4 mt-20">
         <div>
-          {accesToken && <Sidebar fullSplit={fullsplit}/>}
+         
          
         </div>
-        {accesToken && <div className="mr-10"><h2 className="text-white font-bold flex-col">Dashboard</h2></div>}
+       
       {accesToken && <div className="mr-10"><p className="text-white flex-col">Office:</p><p className="text-white">{office}</p></div>}
         </div>
         {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
