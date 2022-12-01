@@ -1,22 +1,21 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { customersSoap } from '../../soap/customersSoap';
-import { companyAtom, REDIRECT_URL } from '../../soap/redirect';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
+import { customersSoap } from '../../../soap/customersSoap';
+import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
+import Header from '../../Components/Header';
+import Sidebar from '../../Components/Sidebar';
 import { useAtom } from 'jotai'
-import { relatiesSoap } from '../../soap/relatiesSoap';
-import { addRelatiesSoap } from '../../soap/addRelatiesSoap';
+import { invoiceSoap } from '../../../soap/invoiceSoap';
+import { OfficesSoap } from '../../../soap/officesSoap';
 
 function Bonnetjes() {
     const [accesToken, setAccesToken] = useState<string>("");
-    const [companyCode, setCompanyCode] = useAtom(companyAtom)
+    const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
-    const [suppliers, setSuppliers] = useState<string[]>();
-    const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
+    const [invoiceNumber, setInvoiceNumber] = useState<any>();
+    const [requestedInvoiceNumber, setRequestedInvoiceNumber] = useState<any>(0);
     const router = useRouter();
-    const [naam, setNaam] = useState("")
     
     useEffect(() => {
         let accestoken:string | undefined = "";
@@ -31,10 +30,10 @@ function Bonnetjes() {
       
     useEffect(() => {
 
-        getRelaties()
+        getInvoices()
+        getCompanyCode()
         
-        
-        }, [accesToken, companyCode, succesfullAddedRelatie])
+        }, [accesToken, companyCode])
         
         const handleLogin = () => {
             window.location.replace(
@@ -46,33 +45,38 @@ function Bonnetjes() {
             window.location.replace(REDIRECT_URL as string);
           };
 
-    function getRelaties(){
+    function getInvoices(){
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open(
           "POST",
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = relatiesSoap({accesToken, companyCode})
+        const sr = invoiceSoap({accesToken, companyCode, requestedInvoiceNumber})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
               const parser = new DOMParser()
               const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const firstRelaties:any = el.childNodes[1]?.textContent
-            
-              const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(firstRelaties,"text/xml");
-              const relaties:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
-             console.log(relaties)
-              const suppArray:any = []
-              for(let i= 0; i < 500; i++){
-                const demension:any = (relaties.getElementsByTagName("dimension")[i])
-                suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
-                
-              }
+              const firstfacturen:any = el.childNodes[1]?.textContent
              
-            setSuppliers(suppArray)
+              const parseHtml = new DOMParser();
+              const xmlDoc2 = parseHtml.parseFromString(firstfacturen,"text/xml");
+              const suppliers:any = (xmlDoc2.getElementsByTagName("salesinvoice")[0])
+              const demension:any = suppliers.getElementsByTagName("header")[0]
+              if(demension == undefined){
+                setInvoiceNumber(0)
+              }
+              else{
+                const invoicenumber:any = requestedInvoiceNumber > 0 && demension.getElementsByTagName("invoicenumber")[0]
+                if(invoiceNumber == undefined){
+                    setInvoiceNumber(0)
+                  }
+                  else{
+                    setInvoiceNumber(invoicenumber.innerHTML)
+                  }
+            }
+             
             }
           }
         };
@@ -81,24 +85,32 @@ function Bonnetjes() {
         xmlhttp.send(sr);
       }
 
-      function addRelatie(){
+      function getCompanyCode() {
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open(
           "POST",
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = addRelatiesSoap({accesToken, companyCode, naam})
+        const sr = OfficesSoap({accesToken})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
-             setSuccesFullAddedRelatie(!succesfullAddedRelatie)
+              const parser = new DOMParser()
+              const el = parser.parseFromString(xmlhttp.responseText, "text/html");
+              const offices:any = el.childNodes[1]?.textContent
+             
+               const parseHtml = new DOMParser();
+              const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
+              const XML_ROW:any = (xmlDoc2.getElementsByTagName("offices")[0])
+              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
+              
             }
           }
-        }
-         // Send the POST request
-         xmlhttp.setRequestHeader("Content-Type", "text/xml");
-         xmlhttp.send(sr);
+        };
+        // Send the POST request
+        xmlhttp.setRequestHeader("Content-Type", "text/xml");
+        xmlhttp.send(sr);
       }
       return (
         <>
@@ -110,31 +122,22 @@ function Bonnetjes() {
          </div>
             <div className="flex ml-8 mt-20">
               
-              {/*---PROTECTED PROCEDURE---*/}  
+              {/*with acces*/}  
               {accesToken && 
-              <div className='flex text-white'>
-                 {/*Relaties mappen */}
-                <div>
-                  <p className="text-white flex-col font-bold text-3xl">Relaties</p>
-                  <div className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
-                  return <div key={i}><p>{sup}</p></div>
-                })}
-                </div>
-                </div>
-
-              {/*Relatie aanmaken */}
-                <div>
-                 
-                    {/*Data invoer zie oude template rubyapp*/}
-                  <label className='font-bold mr-2'>Naam:</label><input className='rounded-md text-black font-bold' value={naam} onChange={(e) => setNaam(e.target.value)} />
-                  <button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2 text-white hover:bg-white/20' onClick={addRelatie}>Add Relatie</button>
-
-                </div>
+              <div className='text-white'>
+                <p className=" flex-col font-bold text-3xl">Facturen</p>
+                <div className='flex'>
+                <Link href={`/facturen/zoeken#id_token=${fullsplit}`}><button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
+                 text-white hover:bg-white/20'>Zoeken</button></Link>
+                  <Link href={`/facturen/aanmaken#id_token=${fullsplit}`}><button className='mt-4 ml-4 flex flex-col rounded-xl bg-white/10 p-2
+                 text-white hover:bg-white/20'>Aanmaken</button></Link>
+                 </div>
+               
               </div>}
               
             </div>
           
-            {/*---PUBLIC PROCEDURE---*/}  
+            {/*without acces*/}  
             {!accesToken && 
             <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">

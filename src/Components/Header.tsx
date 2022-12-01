@@ -10,14 +10,10 @@ const handleMobile = () => {
 }
 
   return (
-    
-        <div>
-          
-<nav className=" border-gray-200 px-2 sm:px-4 py-2.5 h-14 fixed w-screen backdrop-blur-sm">
+  <div>
+    <nav className=" border-gray-200 px-2 sm:px-4 py-2.5 h-14 fixed w-screen backdrop-blur-sm">
   <div className="container flex flex-wrap items-center justify-between mx-auto ">
-   
-    <Link href="/"> <Image className='cursor-pointer ml-4 mt-4' src="https://i.imgur.com/S67aq4a.png" alt='ruby_logo' height={100} width={80}/></Link>
-       
+    <Link href={`/#id_token=${fullSplit}`}> <Image className='cursor-pointer ml-4 mt-4' src="https://i.imgur.com/S67aq4a.png" alt='ruby_logo' height={100} width={80}/></Link>
     
     <button onClick={handleMobile} type="button" className=" inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden " aria-controls="navbar-default" aria-expanded="false">
       <span className="sr-only">Open main menu</span>
@@ -32,7 +28,7 @@ const handleMobile = () => {
         <Link href={`/#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white  rounded md:bg-transparent  md:p-0 dark:text-white" aria-current="page">Dashboard</p></Link>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</a>
+        <Link href={`/facturen#id_token=${fullSplit}`}><p  className="block py-2 pl-3 pr-4 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</p></Link>
         </li>
         <li>
         <Link href={`/bonnetjes#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white 0 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Bonnetjes</p></Link>
@@ -41,7 +37,7 @@ const handleMobile = () => {
         <Link href={`/relaties#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Relaties</p></Link>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</a>
+          <p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</p>
         </li>
         <li>
           <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Bankkoppeling</a>
@@ -68,7 +64,7 @@ const handleMobile = () => {
         <Link href={`/#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent  md:p-0 dark:text-white" aria-current="page">Dashboard</p></Link>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</a>
+        <Link href={`/facturen#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</p></Link>
         </li>
         <li>
         <Link href={`/bonnetjes#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Bonnetjes</p></Link>
@@ -89,8 +85,8 @@ const handleMobile = () => {
           <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Agenda</a>
         </li>
         <li>
-        {!accesToken && <button onClick={() => handleLogin()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20'>Sign in</button>}
-        {accesToken && <button onClick={() => handleLogout()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20'>Sign Out</button>}
+        {!accesToken && <button onClick={() => handleLogin()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20'>Sign in</button>}
+        {accesToken && <button onClick={() => handleLogout()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20'>Sign Out</button>}
 
         </li>
       </ul>

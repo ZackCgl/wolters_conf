@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { customersSoap } from '../../soap/customersSoap';
-import { companyAtom, REDIRECT_URL } from '../../soap/redirect';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
+import { customersSoap } from '../../../soap/customersSoap';
+import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
+import Header from '../../Components/Header';
+import Sidebar from '../../Components/Sidebar';
 import { useAtom } from 'jotai'
-import { OfficesSoap } from '../../soap/officesSoap';
+import { invoiceSoap } from '../../../soap/invoiceSoap';
+import { OfficesSoap } from '../../../soap/officesSoap';
 
 function Bonnetjes() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
-    const [suppliers, setSuppliers] = useState<string[]>(["Loading..."]);
+    const [invoiceNumber, setInvoiceNumber] = useState<any>();
+    const [requestedInvoiceNumber, setRequestedInvoiceNumber] = useState<any>(0);
     const router = useRouter();
     
     useEffect(() => {
@@ -28,7 +30,7 @@ function Bonnetjes() {
       
     useEffect(() => {
 
-        getCustomers()
+        getInvoices()
         getCompanyCode()
         
         }, [accesToken, companyCode])
@@ -43,32 +45,38 @@ function Bonnetjes() {
             window.location.replace(REDIRECT_URL as string);
           };
 
-    function getCustomers(){
+    function getInvoices(){
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open(
           "POST",
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = customersSoap({accesToken, companyCode})
+        const sr = invoiceSoap({accesToken, companyCode, requestedInvoiceNumber})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
               const parser = new DOMParser()
               const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const Firstsuppliers:any = el.childNodes[1]?.textContent
+              const firstfacturen:any = el.childNodes[1]?.textContent
              
               const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
-              const suppliers:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
-              const suppArray:any = []
-              for(let i= 0; i < 1000; i++){
-                const demension:any = (suppliers.getElementsByTagName("dimension")[i])
-                suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
-                
+              const xmlDoc2 = parseHtml.parseFromString(firstfacturen,"text/xml");
+              const suppliers:any = (xmlDoc2.getElementsByTagName("salesinvoice")[0])
+              const demension:any = suppliers.getElementsByTagName("header")[0]
+              if(demension == undefined){
+                setInvoiceNumber(0)
               }
+              else{
+                const invoicenumber:any = requestedInvoiceNumber > 0 && demension.getElementsByTagName("invoicenumber")[0]
+                if(invoiceNumber == undefined){
+                    setInvoiceNumber(0)
+                  }
+                  else{
+                    setInvoiceNumber(invoicenumber.innerHTML)
+                  }
+            }
              
-              setSuppliers(suppArray)
             }
           }
         };
@@ -116,11 +124,10 @@ function Bonnetjes() {
               
               {/*with acces*/}  
               {accesToken && 
-              <div>
-                <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
-                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
-                return <div key={i}><p>{sup}</p></div>
-              })}</p>
+              <div className='text-white'>
+                <p className=" flex-col font-bold text-3xl">Aanmaken</p>
+                
+               
               </div>}
               
             </div>

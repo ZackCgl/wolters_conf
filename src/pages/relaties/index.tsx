@@ -1,19 +1,23 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { customersSoap } from '../../soap/customersSoap';
-import { companyAtom, REDIRECT_URL } from '../../soap/redirect';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
+import { customersSoap } from '../../../soap/customersSoap';
+import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
+import Header from '../../Components/Header';
+import Sidebar from '../../Components/Sidebar';
 import { useAtom } from 'jotai'
-import { OfficesSoap } from '../../soap/officesSoap';
+import { relatiesSoap } from '../../../soap/relatiesSoap';
+import { addRelatiesSoap } from '../../../soap/addRelatiesSoap';
+import { OfficesSoap } from '../../../soap/officesSoap';
 
 function Bonnetjes() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
-    const [suppliers, setSuppliers] = useState<string[]>(["Loading..."]);
+    const [relations, setRelations] = useState<string[]>(["Loading..."]);
+    const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
     const router = useRouter();
+    const [naam, setNaam] = useState("")
     
     useEffect(() => {
         let accestoken:string | undefined = "";
@@ -28,10 +32,11 @@ function Bonnetjes() {
       
     useEffect(() => {
 
-        getCustomers()
+        getRelaties()
         getCompanyCode()
         
-        }, [accesToken, companyCode])
+        
+        }, [accesToken, companyCode, succesfullAddedRelatie])
         
         const handleLogin = () => {
             window.location.replace(
@@ -43,38 +48,59 @@ function Bonnetjes() {
             window.location.replace(REDIRECT_URL as string);
           };
 
-    function getCustomers(){
+    function getRelaties(){
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open(
           "POST",
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = customersSoap({accesToken, companyCode})
+        const sr = relatiesSoap({accesToken, companyCode})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
               const parser = new DOMParser()
               const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const Firstsuppliers:any = el.childNodes[1]?.textContent
-             
+              const firstRelaties:any = el.childNodes[1]?.textContent
+            
               const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
-              const suppliers:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
+              const xmlDoc2 = parseHtml.parseFromString(firstRelaties,"text/xml");
+              const relaties:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
+             console.log(relaties)
               const suppArray:any = []
-              for(let i= 0; i < 1000; i++){
-                const demension:any = (suppliers.getElementsByTagName("dimension")[i])
+              for(let i= 0; i < 500; i++){
+                const demension:any = (relaties.getElementsByTagName("dimension")[i])
                 suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
                 
               }
              
-              setSuppliers(suppArray)
+            setRelations(suppArray)
             }
           }
         };
         // Send the POST request
         xmlhttp.setRequestHeader("Content-Type", "text/xml");
         xmlhttp.send(sr);
+      }
+
+      function addRelatie(){
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open(
+          "POST",
+          "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
+          true
+        );
+        const sr = addRelatiesSoap({accesToken, companyCode, naam})
+        xmlhttp.onreadystatechange = () => {
+          if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+             setSuccesFullAddedRelatie(!succesfullAddedRelatie)
+            }
+          }
+        }
+         // Send the POST request
+         xmlhttp.setRequestHeader("Content-Type", "text/xml");
+         xmlhttp.send(sr);
       }
 
       function getCompanyCode() {
@@ -114,18 +140,31 @@ function Bonnetjes() {
          </div>
             <div className="flex ml-8 mt-20">
               
-              {/*with acces*/}  
+              {/*---PROTECTED PROCEDURE---*/}  
               {accesToken && 
-              <div>
-                <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
-                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
-                return <div key={i}><p>{sup}</p></div>
-              })}</p>
+              <div className='flex text-white'>
+                
+
+              {/*Relatie aanmaken */}
+                <div>
+                 
+                    {/*Data invoer zie oude template rubyapp*/}
+                    <Link href={`/relaties/toevoegen#id_token=${fullsplit}`}><button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
+                 text-white hover:bg-white/20'>Relatie Toevoegen</button></Link>
+                </div>
+                 {/*Relaties mappen */}
+                 <div className='ml-4'>
+                  <p className="text-white flex-col font-bold text-3xl">Relaties</p>
+                  <div className="text-white font-extralight text-2xl">{relations?.map((sup:any, i:any) => {
+                  return <div key={i}><p>{sup}</p></div>
+                })}
+                </div>
+                </div>
               </div>}
               
             </div>
           
-            {/*without acces*/}  
+            {/*---PUBLIC PROCEDURE---*/}  
             {!accesToken && 
             <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
