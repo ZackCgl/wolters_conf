@@ -10,7 +10,7 @@ import { OfficesSoap } from '../../../soap/officesSoap';
 import { addInvoicesSoap } from '../../../soap/addInvoiceSoap';
 import { relatiesSoap } from '../../../soap/relatiesSoap';
 
-function crediteuren() {
+function Aanmaken() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
@@ -267,7 +267,7 @@ function crediteuren() {
       );
 }
 
-export default crediteuren
+export default Aanmaken
 
 
 

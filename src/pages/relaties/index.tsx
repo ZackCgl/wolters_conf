@@ -10,7 +10,7 @@ import { relatiesSoap } from '../../../soap/relatiesSoap';
 import { addRelatiesSoap } from '../../../soap/addRelatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 
-function crediteuren() {
+function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
@@ -196,7 +196,7 @@ function crediteuren() {
       );
 }
 
-export default crediteuren
+export default Index
 
 
 

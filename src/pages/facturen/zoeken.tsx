@@ -9,7 +9,7 @@ import { useAtom } from 'jotai'
 import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 
-function crediteuren() {
+function Zoeken() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
@@ -195,7 +195,7 @@ function crediteuren() {
       );
 }
 
-export default crediteuren
+export default Zoeken
 
 
 
