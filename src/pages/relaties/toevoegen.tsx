@@ -136,7 +136,7 @@ function Toevoegen() {
         <>
          <div className='flex flex-col'>
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-gradient-to-b from-[#233cfeb1] to-[#111c6fdf]">
+          <main className="flex min-h-screen bg-black">
           <div>
           <Sidebar />
          </div>

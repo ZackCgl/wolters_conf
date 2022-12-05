@@ -10,7 +10,7 @@ import { relatiesSoap } from '../../../soap/relatiesSoap';
 import { addRelatiesSoap } from '../../../soap/addRelatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 
-function Bonnetjes() {
+function crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
@@ -134,7 +134,7 @@ function Bonnetjes() {
         <>
          <div className='flex flex-col'>
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-gradient-to-b from-[#233cfeb1] to-[#111c6fdf]">
+          <main className="flex min-h-screen bg-black">
           <div>
           <Sidebar />
          </div>
@@ -196,7 +196,7 @@ function Bonnetjes() {
       );
 }
 
-export default Bonnetjes
+export default crediteuren
 
 
 

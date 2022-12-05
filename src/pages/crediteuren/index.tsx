@@ -6,18 +6,13 @@ import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import { useAtom } from 'jotai'
-import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 
 function crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
-    const [invoiceNumber, setInvoiceNumber] = useState<any>();
-    const [requestedInvoiceNumber, setRequestedInvoiceNumber] = useState<any>(0);
-    const [incBtw, setIncBtw] = useState<any>(0)
-    const [exBtw, setExBtw] = useState<any>(0)
-    const [Customer, setCustomer] = useState<any>()
+    const [suppliers, setSuppliers] = useState<string[]>(["Loading..."]);
     const router = useRouter();
     
     useEffect(() => {
@@ -33,7 +28,7 @@ function crediteuren() {
       
     useEffect(() => {
 
-        getInvoices()
+        getCustomers()
         getCompanyCode()
         
         }, [accesToken, companyCode])
@@ -48,59 +43,32 @@ function crediteuren() {
             window.location.replace(REDIRECT_URL as string);
           };
 
-    function getInvoices(){
+    function getCustomers(){
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open(
           "POST",
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = invoiceSoap({accesToken, companyCode, requestedInvoiceNumber})
+        const sr = customersSoap({accesToken, companyCode})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
               const parser = new DOMParser()
               const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const firstfacturen:any = el.childNodes[1]?.textContent
+              const Firstsuppliers:any = el.childNodes[1]?.textContent
              
               const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(firstfacturen,"text/xml");
-              const suppliers:any = (xmlDoc2.getElementsByTagName("salesinvoice")[0])
-              const demension:any = suppliers.getElementsByTagName("header")[0]
-              const totals:any = suppliers.getElementsByTagName("totals")[0]
-              if(demension == undefined){
-                setInvoiceNumber(0)
-                    setCustomer("")
-                    setIncBtw(null)
-                    setExBtw(null)
-              }
-              else{
-                const invoicenumber:any = requestedInvoiceNumber > 0 && demension.getElementsByTagName("invoicenumber")[0]
-                const customer:any = requestedInvoiceNumber > 0 && demension.getElementsByTagName("customer")[0]
-                const valueinc:any = requestedInvoiceNumber > 0 && totals.getElementsByTagName("valueinc")[0]
-                const valueex:any = requestedInvoiceNumber > 0 && totals.getElementsByTagName("valueexcl")[0]
-                if(invoiceNumber == undefined){
-                    setInvoiceNumber(0)
-                    setCustomer("")
-                    setIncBtw(0)
-                    setExBtw(0)
-                  }
-                  else{
-                    setInvoiceNumber(invoicenumber.innerHTML)
-                    setCustomer(customer.innerHTML)
-                    setIncBtw(valueinc.innerHTML)
-                    setExBtw(valueex.innerHTML)
-                  }
-            }
-             
-             
-             
-              {/* const suppArray:any = []
-              suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
+              const xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
+              const suppliers:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
+              const suppArray:any = []
+              for(let i= 0; i < 1000; i++){
+                const demension:any = (suppliers.getElementsByTagName("dimension")[i])
+                suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
                 
-              
+              }
              
-            setSuppliers(suppArray) */}
+              setSuppliers(suppArray)
             }
           }
         };
@@ -136,7 +104,6 @@ function crediteuren() {
         xmlhttp.setRequestHeader("Content-Type", "text/xml");
         xmlhttp.send(sr);
       }
-      
       return (
         <>
          <div className='flex flex-col'>
@@ -146,19 +113,19 @@ function crediteuren() {
           <Sidebar />
          </div>
             <div className="flex ml-8 mt-20">
-              
+            <div>
+                 
+                 {/*Data invoer zie oude template rubyapp*/}
+                 <Link href={`/crediteuren/toevoegen#id_token=${fullsplit}`}><button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
+              text-white hover:bg-white/20 mr-2'>Crediteur Toevoegen</button></Link>
+             </div>
               {/*with acces*/}  
               {accesToken && 
-              <div className='text-white'>
-                <p className=" flex-col font-bold text-3xl">Zoeken</p>
-                <div>
-                <label>Zoek factuurnummer: </label><input className='text-black w-16 rounded-md' placeholder='bijv: 1' value={requestedInvoiceNumber} onChange={(e) => setRequestedInvoiceNumber(e.target.value)} />
-                <button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2 text-white hover:bg-white/20' onClick={getInvoices}>Zoek factuur</button>
-                <p className="text-white font-extralight text-2xl">Invoicenumber: {invoiceNumber > 0 ? invoiceNumber : "Geen factuur gevonden"}</p>
-                <p className="text-white font-extralight text-2xl">Klantnummer: {Customer}</p>
-                <p className="text-white font-extralight text-2xl">Incl Btw: {incBtw}</p>
-                <p className="text-white font-extralight text-2xl">Ex. Btw: {exBtw}</p>
-                </div>
+              <div>
+                <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
+                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
+                return <div key={i}><p>{sup}</p></div>
+              })}</p>
               </div>}
               
             </div>

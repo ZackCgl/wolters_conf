@@ -9,7 +9,7 @@ import { useAtom } from 'jotai'
 import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 
-function Bonnetjes() {
+function crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string>("");
@@ -30,7 +30,7 @@ function Bonnetjes() {
       
     useEffect(() => {
 
-        getInvoices()
+       
         getCompanyCode()
         
         }, [accesToken, companyCode])
@@ -45,45 +45,6 @@ function Bonnetjes() {
             window.location.replace(REDIRECT_URL as string);
           };
 
-    function getInvoices(){
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.open(
-          "POST",
-          "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
-          true
-        );
-        const sr = invoiceSoap({accesToken, companyCode, requestedInvoiceNumber})
-        xmlhttp.onreadystatechange = () => {
-          if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
-              const parser = new DOMParser()
-              const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const firstfacturen:any = el.childNodes[1]?.textContent
-             
-              const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(firstfacturen,"text/xml");
-              const suppliers:any = (xmlDoc2.getElementsByTagName("salesinvoice")[0])
-              const demension:any = suppliers.getElementsByTagName("header")[0]
-              if(demension == undefined){
-                setInvoiceNumber(0)
-              }
-              else{
-                const invoicenumber:any = requestedInvoiceNumber > 0 && demension.getElementsByTagName("invoicenumber")[0]
-                if(invoiceNumber == undefined){
-                    setInvoiceNumber(0)
-                  }
-                  else{
-                    setInvoiceNumber(invoicenumber.innerHTML)
-                  }
-            }
-             
-            }
-          }
-        };
-        // Send the POST request
-        xmlhttp.setRequestHeader("Content-Type", "text/xml");
-        xmlhttp.send(sr);
-      }
 
       function getCompanyCode() {
         const xmlhttp = new XMLHttpRequest();
@@ -112,11 +73,42 @@ function Bonnetjes() {
         xmlhttp.setRequestHeader("Content-Type", "text/xml");
         xmlhttp.send(sr);
       }
+
+      function getInvoices(){
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open(
+          "POST",
+          "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
+          true
+        );
+        const sr = invoiceSoap({accesToken, companyCode, requestedInvoiceNumber})
+        xmlhttp.onreadystatechange = () => {
+          if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+              const parser = new DOMParser()
+              const el = parser.parseFromString(xmlhttp.responseText, "text/html");
+              const firstfacturen:any = el.childNodes[1]?.textContent
+             console.log(firstfacturen)
+
+             {/*  const parseHtml = new DOMParser();
+              const xmlDoc2 = parseHtml.parseFromString(firstfacturen,"text/xml");
+              const suppliers:any = (xmlDoc2.getElementsByTagName("salesinvoice")[0])
+              const demension:any = suppliers.getElementsByTagName("header")[0] */}
+              
+             
+              
+            }
+          }
+        };
+        // Send the POST request
+        xmlhttp.setRequestHeader("Content-Type", "text/xml");
+        xmlhttp.send(sr);
+      }
       return (
         <>
          <div className='flex flex-col'>
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-gradient-to-b from-[#233cfeb1] to-[#111c6fdf]">
+          <main className="flex min-h-screen bg-black">
           <div>
           <Sidebar />
          </div>
@@ -131,6 +123,8 @@ function Bonnetjes() {
                  text-white hover:bg-white/20'>Zoeken</button></Link>
                   <Link href={`/facturen/aanmaken#id_token=${fullsplit}`}><button className='mt-4 ml-4 flex flex-col rounded-xl bg-white/10 p-2
                  text-white hover:bg-white/20'>Aanmaken</button></Link>
+                 <button onClick={getInvoices} className='mt-4 ml-4 flex flex-col rounded-xl bg-white/10 p-2
+                 text-white hover:bg-white/20'>Zie Facturen</button>
                  </div>
                
               </div>}
@@ -169,7 +163,7 @@ function Bonnetjes() {
       );
 }
 
-export default Bonnetjes
+export default crediteuren
 
 
 
