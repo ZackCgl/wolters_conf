@@ -105,7 +105,7 @@ const handleLogout = () => {
     
       <Image 
        width={500}
-       height={500} src="https://i.imgur.com/qkeAkGj.jpg" alt=""></Image>
+       height={500} src="https://i.imgur.com/p5bASKY.jpg" alt=""></Image>
     
     <div className="p-5">
         <a href="#">
