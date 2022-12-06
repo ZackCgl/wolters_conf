@@ -77,7 +77,7 @@ function Index() {
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex min-h-screen bg-black">
           <div>
-          <Sidebar fullSplit={fullsplit} active={true} />
+          <Sidebar fullSplit={fullsplit} activeIns={true} />
          </div>
             <div className="flex ml-8 mt-20">
               
