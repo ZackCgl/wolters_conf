@@ -25,16 +25,16 @@ const handleMobile = () => {
         {accesToken && <button onClick={() => handleLogout()} className='mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden'>Sign Out</button>}
 
         <li>
-        <Link href={`/#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white  rounded md:bg-transparent  md:p-0 dark:text-white" aria-current="page">Dashboard</p></Link>
+        <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-emerald-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
         </li>
         <li>
-        <Link href={`/facturen#id_token=${fullSplit}`}><p  className="block py-2 pl-3 pr-4 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</p></Link>
+        <Link href={`/facturen#id_token=${fullSplit}`}><p  className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-emerald-400": "text-white"} `}>Facturen</p></Link>
         </li>
         <li>
-        <Link href={`/crediteuren#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white 0 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Crediteuren</p></Link>
+        <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-emerald-400": "text-white"} `}>Crediteuren</p></Link>
         </li>
         <li>
-        <Link href={`/relaties#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Relaties</p></Link>
+        <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-emerald-400": "text-white"} `}>Relaties</p></Link>
         </li>
         <li>
           <p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</p>
