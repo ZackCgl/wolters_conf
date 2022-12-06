@@ -140,10 +140,10 @@ function Zoeken() {
       return (
         <>
          <div className='flex flex-col'>
-          <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          <Header active={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex min-h-screen bg-black">
           <div>
-          <Sidebar />
+          <Sidebar fullSplit={fullsplit} />
          </div>
             <div className="flex ml-8 mt-20">
               
@@ -164,29 +164,29 @@ function Zoeken() {
             </div>
           
             {/*without acces*/}  
-            {!accesToken && 
-            <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-               <Link
-                  className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                  href="https://create.t3.gg/en/usage/first-steps"
-                >
-                  <h3 className="text-2xl font-bold">Sign Out →</h3>
-                  <div className="text-lg">
-                    Sign in from your account - We offer the greatest features available.
-                  </div>
-                </Link>
-              <Link
-                  className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                  href="https://create.t3.gg/en/introduction"
-                >
-                  <h3 className="text-2xl font-bold">Documentation →</h3>
-                  <div className="text-lg">
-                    Learn more about Ruby Finance, our docs are open source.
-                  </div>
-                </Link>
+            {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+          
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+           <div
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+             
+            >
+              <h3 onClick={handleLogin} className="text-2xl font-bold">Sign In →</h3>
+              <div className="text-lg">
+                Sign in from your account - We offer the greatest features available.
               </div>
-            </div>}
+            </div>
+          <div
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+            
+            >
+              <h3 className="text-2xl font-bold">Documentation →</h3>
+              <div className="text-lg">
+                Learn more about Ruby Finance, our docs are open source.
+              </div>
+            </div>
+          </div>
+        </div>}
             
           
           </main>

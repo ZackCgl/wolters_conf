@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function Header({fullSplit, handleLogin, handleLogout, accesToken}:any) {
+function Header({fullSplit, handleLogin, handleLogout, accesToken, activeDash, activeFac, activeCred, activeRel, activeOff, activeRapp, activeBank, activeAgenda}:any) {
 const [toggle, setToggle] = useState(false)
 
 const handleMobile = () => {
@@ -61,28 +61,28 @@ const handleMobile = () => {
       <ul className="items-center justify-center font-bold flex flex-col border z-10 bg-black border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-lg md: md:border-0 md:backdrop-blur-sm md:bg-transparent">
        
         <li>
-        <Link href={`/#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent  md:p-0 dark:text-white" aria-current="page">Dashboard</p></Link>
+        <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-emerald-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
         </li>
         <li>
-        <Link href={`/facturen#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Facturen</p></Link>
+        <Link href={`/facturen#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-emerald-400": "text-white"} `}>Facturen</p></Link>
         </li>
         <li>
-        <Link href={`/crediteuren#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Crediteuren</p></Link>
+        <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-emerald-400": "text-white"} `}>Crediteuren</p></Link>
         </li>
         <li>
-        <Link href={`/relaties#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Relaties</p></Link>
+        <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-emerald-400": "text-white"} `}>Relaties</p></Link>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</a>
+          <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeOff ? "text-emerald-400": "text-white"} `}>Offertes</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Bankkoppeling</a>
+          <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeBank ? "text-emerald-400": "text-white"} `}>Bankkoppeling</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Rapportages</a>
+          <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRapp ? "text-emerald-400": "text-white"} `}>Rapportages</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Agenda</a>
+          <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeAgenda ? "text-emerald-400": "text-white"} `}>Agenda</a>
         </li>
         <li>
         {!accesToken && <button onClick={() => handleLogin()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20'>Sign in</button>}

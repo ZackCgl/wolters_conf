@@ -107,18 +107,18 @@ function Crediteuren() {
       return (
         <>
          <div className='flex flex-col'>
-          <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          <Header activeCred={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex min-h-screen bg-black">
           <div>
-          <Sidebar />
+          <Sidebar fullSplit={fullsplit} />
          </div>
             <div className="flex ml-8 mt-20">
-            <div>
+            {accesToken &&<div>
                  
                  {/*Data invoer zie oude template rubyapp*/}
                  <Link href={`/crediteuren/toevoegen#id_token=${fullsplit}`}><button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
               text-white hover:bg-white/20 mr-2'>Crediteur Toevoegen</button></Link>
-             </div>
+             </div>}
               {/*with acces*/}  
               {accesToken && 
               <div>
@@ -131,29 +131,29 @@ function Crediteuren() {
             </div>
           
             {/*without acces*/}  
-            {!accesToken && 
-            <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-               <Link
-                  className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                  href="https://create.t3.gg/en/usage/first-steps"
-                >
-                  <h3 className="text-2xl font-bold">Sign Out →</h3>
-                  <div className="text-lg">
-                    Sign in from your account - We offer the greatest features available.
-                  </div>
-                </Link>
-              <Link
-                  className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                  href="https://create.t3.gg/en/introduction"
-                >
-                  <h3 className="text-2xl font-bold">Documentation →</h3>
-                  <div className="text-lg">
-                    Learn more about Ruby Finance, our docs are open source.
-                  </div>
-                </Link>
+            {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+          
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+           <div
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+             
+            >
+              <h3 onClick={handleLogin} className="text-2xl font-bold">Sign In →</h3>
+              <div className="text-lg">
+                Sign in from your account - We offer the greatest features available.
               </div>
-            </div>}
+            </div>
+          <div
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+            
+            >
+              <h3 className="text-2xl font-bold">Documentation →</h3>
+              <div className="text-lg">
+                Learn more about Ruby Finance, our docs are open source.
+              </div>
+            </div>
+          </div>
+        </div>}
             
           
           </main>
