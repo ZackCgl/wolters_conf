@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
-import { relatiesSoap } from '../../../soap/relatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import { addCrediteurSoap } from '../../../soap/addCrediteurSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
@@ -12,7 +11,6 @@ function Toevoegen() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
     const [fullsplit, setFullSplit] = useState<string | undefined>("");
-    const [suppliers, setSuppliers] = useState<string[]>();
     const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
     const router = useRouter();
     const [naam, setNaam] = useState("")
@@ -23,7 +21,6 @@ function Toevoegen() {
         const secondsplit = firstsplit[1]?.split("&token_type")[0];
         accestoken = secondsplit;
         accestoken && setAccesToken(accestoken);
-
         const fullsplit = router.asPath.split("#id_token=")[1];
         setFullSplit(fullsplit);
       });
