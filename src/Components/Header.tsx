@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface Props{
-  fullSplit: String | undefined 
+  fullSplit: string | undefined 
   handleLogin: () => void
   handleLogout: () => void
   accesToken: string 

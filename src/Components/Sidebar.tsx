@@ -3,7 +3,7 @@ import {AiOutlineQuestionCircle} from "react-icons/ai"
 import Link from "next/link"
 
 interface Props{
-  fullSplit: String | undefined  
+  fullSplit: string | undefined  
   activeIns?: boolean
   activeFaq?: boolean
 }
