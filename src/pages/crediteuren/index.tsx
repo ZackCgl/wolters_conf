@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
 import { customersSoap } from '../../../soap/customersSoap';
-import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
+import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
-import { useAtom } from 'jotai'
 import { OfficesSoap } from '../../../soap/officesSoap';
+import PublicProcedure from '../../Components/PublicProcedure';
 
 function Crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
-    const [companyCode, setCompanyCode] = useState<any>()
+    const [companyCode, setCompanyCode] = useState<string | any>()
     const [fullsplit, setFullSplit] = useState<string>("");
     const [suppliers, setSuppliers] = useState<string[]>(["Loading..."]);
     const router = useRouter();
@@ -60,10 +60,10 @@ function Crediteuren() {
              
               const parseHtml = new DOMParser();
               const xmlDoc2 = parseHtml.parseFromString(Firstsuppliers,"text/xml");
-              const suppliers:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
-              const suppArray:any = []
+              const suppliers = (xmlDoc2.getElementsByTagName("dimensions")[0])
+              const suppArray:any[] = []
               for(let i= 0; i < 1000; i++){
-                const demension:any = (suppliers.getElementsByTagName("dimension")[i])
+                const demension = (suppliers?.getElementsByTagName("dimension")[i])
                 suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
                 
               }
@@ -92,9 +92,9 @@ function Crediteuren() {
               const el = parser.parseFromString(xmlhttp.responseText, "text/html");
               const offices:any = el.childNodes[1]?.textContent
              
-               const parseHtml = new DOMParser();
+              const parseHtml = new DOMParser();
               const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
-              const XML_ROW:any = (xmlDoc2.getElementsByTagName("offices")[0])
+              const XML_ROW = (xmlDoc2.getElementsByTagName("offices")[0])
               setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
               
             }
@@ -123,7 +123,7 @@ function Crediteuren() {
               {accesToken && 
               <div>
                 <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
-                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:any, i:any) => {
+                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:string, i:number) => {
                 return <div key={i}><p>{sup}</p></div>
               })}</p>
               </div>}
@@ -131,31 +131,9 @@ function Crediteuren() {
             </div>
           
             {/*without acces*/}  
-            {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-           <div
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-             
-            >
-              <h3 onClick={handleLogin} className="text-2xl font-bold">Sign In →</h3>
-              <div className="text-lg">
-                Sign in from your account - We offer the greatest features available.
-              </div>
-            </div>
-          <div
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+            {!accesToken && 
+            <PublicProcedure handleLogin={handleLogin}/>}
             
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Ruby Finance, our docs are open source.
-              </div>
-            </div>
-          </div>
-        </div>}
-            
-          
           </main>
           </div>
         </>

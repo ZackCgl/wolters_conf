@@ -1,20 +1,17 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { customersSoap } from '../../../soap/customersSoap';
-import { companyAtom, REDIRECT_URL } from '../../../soap/redirect';
+import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
-import { useAtom } from 'jotai'
 import { relatiesSoap } from '../../../soap/relatiesSoap';
-import { addRelatiesSoap } from '../../../soap/addRelatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import { addCrediteurSoap } from '../../../soap/addCrediteurSoap';
+import PublicProcedure from '../../Components/PublicProcedure';
 
 function Toevoegen() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
-    const [fullsplit, setFullSplit] = useState<string>("");
+    const [fullsplit, setFullSplit] = useState<string | undefined>("");
     const [suppliers, setSuppliers] = useState<string[]>();
     const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
     const router = useRouter();
@@ -27,13 +24,12 @@ function Toevoegen() {
         accestoken = secondsplit;
         accestoken && setAccesToken(accestoken);
 
-        const fullsplit:any = router.asPath.split("#id_token=")[1];
+        const fullsplit = router.asPath.split("#id_token=")[1];
         setFullSplit(fullsplit);
       });
       
     useEffect(() => {
 
-        getCrediteur()
         getCompanyCode()
         
         
@@ -48,41 +44,6 @@ function Toevoegen() {
           const handleLogout = () => {
             window.location.replace(REDIRECT_URL as string);
           };
-
-    function getCrediteur(){
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.open(
-          "POST",
-          "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
-          true
-        );
-        const sr = relatiesSoap({accesToken, companyCode})
-        xmlhttp.onreadystatechange = () => {
-          if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
-              const parser = new DOMParser()
-              const el = parser.parseFromString(xmlhttp.responseText, "text/html");
-              const firstRelaties:any = el.childNodes[1]?.textContent
-            
-              const parseHtml = new DOMParser();
-              const xmlDoc2 = parseHtml.parseFromString(firstRelaties,"text/xml");
-              const relaties:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
-             console.log(relaties)
-              const suppArray:any = []
-              for(let i= 0; i < 500; i++){
-                const demension:any = (relaties.getElementsByTagName("dimension")[i])
-                suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
-                
-              }
-             
-            setSuppliers(suppArray)
-            }
-          }
-        };
-        // Send the POST request
-        xmlhttp.setRequestHeader("Content-Type", "text/xml");
-        xmlhttp.send(sr);
-      }
 
       function addRelatie(){
         const xmlhttp = new XMLHttpRequest();
@@ -136,7 +97,7 @@ function Toevoegen() {
       return (
         <>
          <div className='flex flex-col'>
-          <Header active={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex min-h-screen bg-black">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -165,31 +126,9 @@ function Toevoegen() {
             </div>
           
             {/*---PUBLIC PROCEDURE---*/}  
-            {!accesToken && <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-           <div
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-             
-            >
-              <h3 onClick={handleLogin} className="text-2xl font-bold">Sign In →</h3>
-              <div className="text-lg">
-                Sign in from your account - We offer the greatest features available.
-              </div>
-            </div>
-          <div
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+            {!accesToken && 
+            <PublicProcedure handleLogin={handleLogin}/>}
             
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Ruby Finance, our docs are open source.
-              </div>
-            </div>
-          </div>
-        </div>}
-            
-          
           </main>
           </div>
         </>
