@@ -41,7 +41,7 @@ function Header({
   <div>
     <nav className=" border-gray-200 px-2 sm:px-4 py-2.5 h-14 fixed w-screen backdrop-blur-sm">
     <div className="container flex flex-wrap items-center justify-between mx-auto ">
-      <Link href={`/#id_token=${fullSplit}`}> <Image className='cursor-pointer ml-4 mt-4' src="https://i.imgur.com/S67aq4a.png" alt='ruby_logo' height={100} width={80}/></Link>
+      <Link href={`/#id_token=${fullSplit}`}> <Image className='cursor-pointer ml-4' src="https://i.imgur.com/S67aq4a.png" alt='ruby_logo' height={100} width={80}/></Link>
       
       <button onClick={handleMobile} type="button" className=" inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden " aria-controls="navbar-default" aria-expanded="false">
         <span className="sr-only">Open main menu</span>
@@ -53,16 +53,16 @@ function Header({
           {accesToken && <button onClick={() => handleLogout()} className='mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden'>Sign Out</button>}
 
           <li>
-          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-emerald-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
+          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-indigo-300": "text-white"} `} aria-current="page">Dashboard</p></Link>
           </li>
           <li>
-          <Link href={`/facturen#id_token=${fullSplit}`}><p  className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-emerald-400": "text-white"} `}>Facturen</p></Link>
+          <Link href={`/facturen#id_token=${fullSplit}`}><p  className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-indigo-300": "text-white"} `}>Facturen</p></Link>
           </li>
           <li>
-          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-emerald-400": "text-white"} `}>Crediteuren</p></Link>
+          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-indigo-300": "text-white"} `}>Crediteuren</p></Link>
           </li>
           <li>
-          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-emerald-400": "text-white"} `}>Relaties</p></Link>
+          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-indigo-300": "text-white"} `}>Relaties</p></Link>
           </li>
           <li>
             <p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</p>
@@ -85,32 +85,32 @@ function Header({
           
         </ul>
       </div>}
-      <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+      <div className="hidden w-full md:block md:w-auto p-4" id="navbar-default">
         <ul className="items-center justify-center font-bold flex flex-col border z-10 bg-black border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-lg md: md:border-0 md:backdrop-blur-sm md:bg-transparent">
         
           <li>
-          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-emerald-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
+          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-indigo-300": "text-white"} `} aria-current="page">Dashboard</p></Link>
           </li>
           <li>
-          <Link href={`/facturen#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-emerald-400": "text-white"} `}>Facturen</p></Link>
+          <Link href={`/facturen#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-indigo-300": "text-white"} `}>Facturen</p></Link>
           </li>
           <li>
-          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-emerald-400": "text-white"} `}>Crediteuren</p></Link>
+          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-indigo-300": "text-white"} `}>Crediteuren</p></Link>
           </li>
           <li>
-          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-emerald-400": "text-white"} `}>Relaties</p></Link>
+          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-indigo-300": "text-white"} `}>Relaties</p></Link>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeOff ? "text-emerald-400": "text-white"} `}>Offertes</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeOff ? "text-indigo-300": "text-white"} `}>Offertes</a>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeBank ? "text-emerald-400": "text-white"} `}>Bankkoppeling</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeBank ? "text-indigo-300": "text-white"} `}>Bankkoppeling</a>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRapp ? "text-emerald-400": "text-white"} `}>Rapportages</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRapp ? "text-indigo-300": "text-white"} `}>Rapportages</a>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeAgenda ? "text-emerald-400": "text-white"} `}>Agenda</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeAgenda ? "text-indigo-300": "text-white"} `}>Agenda</a>
           </li>
           <li>
           {!accesToken && <button onClick={() => handleLogin()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20'>Sign in</button>}

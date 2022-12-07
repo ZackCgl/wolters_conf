@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
@@ -8,6 +8,7 @@ import { OfficesSoap } from '../../../soap/officesSoap';
 import { addInvoicesSoap } from '../../../soap/addInvoiceSoap';
 import { relatiesSoap } from '../../../soap/relatiesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
+import autoAnimate from '@formkit/auto-animate';
 
 function Aanmaken() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -20,13 +21,16 @@ function Aanmaken() {
     const [chosenCustomer, setChosenCustomer] = useState<string>("")
     const [products, setProducts] = useState<any>("")
     const [soapProducts, setSoapProducts] = useState<any>("")
+    const [show, setShow] = useState(false)
+    const parent = useRef(null)
+    const reveal = () => setShow(!show)
+    
     useEffect(() => {
         let accestoken:string | undefined = "";
         const firstsplit = router.asPath.split("access_token=");
         const secondsplit = firstsplit[1]?.split("&token_type")[0];
         accestoken = secondsplit;
         accestoken && setAccesToken(accestoken);
-
         const fullsplit:any = router.asPath.split("#id_token=")[1];
         setFullSplit(fullsplit);
       });
@@ -36,6 +40,10 @@ function Aanmaken() {
       getCompanyCode()
         
         }, [accesToken, companyCode])
+        
+        useEffect(() => {
+          parent.current && autoAnimate(parent.current)
+        }, [parent])
         
         const handleLogin = () => {
             window.location.replace(
@@ -123,12 +131,12 @@ function Aanmaken() {
               const relaties:any = (xmlDoc2.getElementsByTagName("dimensions")[0])
               console.log(relaties)
               const suppArray:any = []
-              for(let i= 0; i < 500; i++){
+              for(let i= 0; i < 10; i++){
                 const demension:any = (relaties.getElementsByTagName("dimension")[i])
                 suppArray.push(demension?.getElementsByTagName("code")[0]?.innerHTML)
                 
               }
-             
+            
             setRelations(suppArray)
             }
           }
@@ -179,7 +187,7 @@ function Aanmaken() {
 
       function selectCustomers(){
        
-       setIsClicked(!isClicked)
+       reveal()
        getRelaties()
        }
 
@@ -208,14 +216,17 @@ function Aanmaken() {
               <div className='text-white'>
                 <p className=" flex-col font-bold text-3xl">Aanmaken</p>
                 <div>
-                <button onClick={selectCustomers} className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
+                  <div ref={parent}>
+                <button onClick={selectCustomers} className='dropdown-label mt-4 flex flex-col rounded-xl bg-white/10 p-2
                  text-white hover:bg-white/20'>Selecteer Debiteur</button>
-                 {isClicked && <div className="text-white font-extralight text-1xl">{relations?.map((sup:any, i:any) => {
-                  return <div className='' key={i}><p onClick={() => {setChosenCustomer(sup); setIsClicked(false)}} className='hover:font-semibold cursor-pointer'>{sup}</p></div>
+                 {show && <div className=" text-white font-extralight text-1xl">{relations?.map((sup:any, i:any) => {
+                  return <div className='' key={i}><p onClick={() => {setChosenCustomer(sup); setIsClicked(false)}} className='dropdown-content hover:font-semibold cursor-pointer'>{sup}</p></div>
                 })}
                 </div>}
+                
                 {chosenCustomer}
-                <button onClick={selectProducts} className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
+                </div>
+                <button onClick={selectProducts} className=' mt-4 flex flex-col rounded-xl bg-white/10 p-2
                  text-white hover:bg-white/20'>Selecteer product</button>
                   {isClickedProductsButton && <div className='flex items-center'>
                     <input className='rounded-md mt-2 h-8 text-black' value={products} onChange={(e) => setProducts(e.target.value)} />

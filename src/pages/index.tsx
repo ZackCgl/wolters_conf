@@ -2,21 +2,27 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Header from "../Components/Header";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { OfficesSoap } from "../../soap/officesSoap";
 import {  REDIRECT_URL } from "../../soap/redirect";
 import Sidebar from "../Components/Sidebar";
 import Image from "next/image"
 import PublicProcedure from "../Components/PublicProcedure";
+import {RiArrowDropDownFill} from "react-icons/ri"
+import autoAnimate from "@formkit/auto-animate";
 
 //DEV REDIRECT_URL
+
+
 
 const Home: NextPage = () => {
   const [accesToken, setAccesToken] = useState<string>("");
   const [fullsplit, setFullSplit] = useState<string>("");
   const [office, setOffice] = useState<string | null | undefined>("Loading...");
   const router = useRouter();
-  
+  const [show, setShow] = useState(false)
+  const parent = useRef(null)
+
   useEffect(() => {
     let accestoken:string | undefined = "";
     const firstsplit = router.asPath.split("access_token=");
@@ -32,8 +38,11 @@ useEffect(() => {
 
 getOffices()
 
-
 },[accesToken])
+
+useEffect(() => {
+  parent.current && autoAnimate(parent.current)
+}, [parent])
 
 const handleLogin = () => {
   window.location.replace(
@@ -71,6 +80,24 @@ const handleLogout = () => {
     xmlhttp.send(sr);
   }
 
+  function getGreeting() {
+    // Get the current hour
+    var hour = new Date().getHours();
+  
+    // Return a greeting based on the current hour
+    if (hour >= 0 && hour < 12) {
+      return "Goedemorgen klant!,";
+    } else if (hour >= 12 && hour < 18) {
+      return "Goedemiddag klant!";
+    } else {
+      return "Goedenavond klant!";
+    }
+  }
+
+  const reveal = () => setShow(!show)
+    
+ 
+
   return (
     <>
       <Head>
@@ -91,16 +118,18 @@ const handleLogout = () => {
           <div>
           <Sidebar fullSplit={fullsplit} />
           </div>
-          <div className="sm:flex lg:flex ml-8 mt-20">
-          {accesToken && 
-            <div className="">
-              <p className="text-white flex-col font-bold text-3xl">Administratie</p>
-              <p className="text-white font-extralight text-2xl">{office}</p>
-            </div>}
-            <div className="mr-4 mt-6 lg:p-6">
-              
-            {accesToken && 
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md 
+          {accesToken && <div className="sm:flex lg:flex ml-8 mt-20">
+         
+            <div ref={parent}>
+              <p onClick={reveal} className="dropdown-label flex cursor-pointer text-indigo-400 font-semibold  decoration-indigo-400 text-1xl hover:text-indigo-300 ">Selecteer administratie<RiArrowDropDownFill className="dropdown-label h-7 w-7"/></p>
+              {show &&<p className="dropdown-content flex text-white font-normal text-1xl ">{office}</p>}
+            </div>
+            <div className="flex flex-col mr-4 lg:ml-4">
+            <div className="text-white font-bold text-2xl">
+              {getGreeting()}
+            </div>
+           
+            <div className="mt-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md 
             dark:bg-gray-800 dark:border-gray-700">
               <Image 
               width={500}
@@ -110,7 +139,7 @@ const handleLogout = () => {
               <div className="p-5">
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900
-                     dark:text-white">Ruby technology acquisitions 2021</h5>
+                     dark:text-white">Ruby technology acquisitions 2022</h5>
                 </a>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   Here are the biggest enterprise technology acquisitions of 2021 so far, 
@@ -120,17 +149,22 @@ const handleLogout = () => {
                   Read more
                   <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" 
                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 
                     1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 
                     1 0 010-1.414z" clip-rule="evenodd">
                     </path>
                   </svg>
                </a>
               </div>
-            </div>}
+              
+            </div>
+            
           </div>
-        </div>
-
+          <div className="text-white">
+             
+              </div>
+        </div>}
+        
           {!accesToken && 
               <PublicProcedure handleLogin={handleLogin}/>}
         
