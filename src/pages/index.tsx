@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   const [show, setShow] = useState(false)
   const parent = useRef(null)
+  const reveal = () => setShow(!show)
 
   useEffect(() => {
     let accestoken:string | undefined = "";
@@ -82,7 +83,7 @@ const handleLogout = () => {
 
   function getGreeting() {
     // Get the current hour
-    let hour = new Date().getHours();
+    const hour = new Date().getHours();
   
     // Return a greeting based on the current hour
     if (hour >= 0 && hour < 12) {
@@ -94,9 +95,8 @@ const handleLogout = () => {
     }
   }
 
-  const reveal = () => setShow(!show)
+
     
- 
 
   return (
     <>
