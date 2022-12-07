@@ -82,7 +82,7 @@ const handleLogout = () => {
 
   function getGreeting() {
     // Get the current hour
-    var hour = new Date().getHours();
+    let hour = new Date().getHours();
   
     // Return a greeting based on the current hour
     if (hour >= 0 && hour < 12) {
