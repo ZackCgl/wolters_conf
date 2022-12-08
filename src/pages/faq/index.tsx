@@ -57,7 +57,7 @@ function Index() {
                const parseHtml = new DOMParser();
               const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
               const XML_ROW:any = (xmlDoc2.getElementsByTagName("offices")[0])
-              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
+              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.textContent)
               
             }
           }
@@ -70,7 +70,7 @@ function Index() {
         <>
          <div className='flex flex-col'>
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-black">
+          <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} activeFaq={true} />
          </div>
@@ -87,10 +87,6 @@ function Index() {
               
             </div>
           
-            {/*---PUBLIC PROCEDURE---*/}  
-            {!accesToken && 
-            <PublicProcedure handleLogin={handleLogin}/>}
-
           </main>
           </div>
         </>

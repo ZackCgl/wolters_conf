@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
+import autoAnimate from '@formkit/auto-animate';
 
 function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -14,6 +15,8 @@ function Index() {
     const [fullsplit, setFullSplit] = useState<string>("");
     const [requestedInvoiceNumber, setRequestedInvoiceNumber] = useState<any>(0);
     const router = useRouter();
+    const parent = useRef(null)
+    const parentPage = useRef(null)
     
     useEffect(() => {
         let accestoken:string | undefined = "";
@@ -28,11 +31,19 @@ function Index() {
       
     useEffect(() => {
 
-       
+      parent.current && autoAnimate(parent.current)
+      parentPage.current && autoAnimate(parentPage.current)
         getCompanyCode()
         
         }, [accesToken, companyCode])
         
+        useEffect(() => {
+          parent.current && autoAnimate(parent.current)
+          parentPage.current && autoAnimate(parentPage.current)
+        }, [parent, parentPage])
+
+
+
         const handleLogin = () => {
             window.location.replace(
               `https://login.twinfield.com/auth/authentication/connect/authorize?client_id=rubyf&redirect_uri=${REDIRECT_URL}&response_type=id_token+token&scope=openid+twf.user+twf.organisation+twf.organisationUser&state=SOME_RANDOM_STATE&nonce=SOME_RANDOM_NONCE`
@@ -62,7 +73,7 @@ function Index() {
                const parseHtml = new DOMParser();
               const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
               const XML_ROW:any = (xmlDoc2.getElementsByTagName("offices")[0])
-              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
+              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.textContent)
               
             }
           }
@@ -106,11 +117,11 @@ function Index() {
         <>
          <div className='flex flex-col'>
           <Header activeFac={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-black">
+          <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
          </div>
-            <div className="flex ml-8 mt-20">
+            <div ref={parentPage} className="flex ml-8 mt-20">
               
               {/*with acces*/}  
               {accesToken && 
@@ -128,10 +139,6 @@ function Index() {
               </div>}
               
             </div>
-          
-            {/*without acces*/}  
-            {!accesToken && 
-            <PublicProcedure handleLogin={handleLogin}/>}
             
           
           </main>

@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { customersSoap } from '../../../soap/customersSoap';
 import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
+import autoAnimate from '@formkit/auto-animate';
 
 function Crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -14,7 +15,8 @@ function Crediteuren() {
     const [fullsplit, setFullSplit] = useState<string>("");
     const [suppliers, setSuppliers] = useState<string[]>(["Loading..."]);
     const router = useRouter();
-    
+    const parent = useRef(null)
+    const [show, setShow] = useState(false)
     useEffect(() => {
         let accestoken:string | undefined = "";
         const firstsplit = router.asPath.split("access_token=");
@@ -27,12 +29,23 @@ function Crediteuren() {
       });
       
     useEffect(() => {
-
+        parent.current && autoAnimate(parent.current)
         getCustomers()
         getCompanyCode()
-        
+       
         }, [accesToken, companyCode])
         
+        useEffect(() => {
+          parent.current && autoAnimate(parent.current)
+         
+        }, [parent])
+
+
+        const reveal = () => {
+          setShow(true)
+          
+        }
+
         const handleLogin = () => {
             window.location.replace(
               `https://login.twinfield.com/auth/authentication/connect/authorize?client_id=rubyf&redirect_uri=${REDIRECT_URL}&response_type=id_token+token&scope=openid+twf.user+twf.organisation+twf.organisationUser&state=SOME_RANDOM_STATE&nonce=SOME_RANDOM_NONCE`
@@ -64,7 +77,7 @@ function Crediteuren() {
               const suppArray:any[] = []
               for(let i= 0; i < 1000; i++){
                 const demension = (suppliers?.getElementsByTagName("dimension")[i])
-                suppArray.push(demension?.getElementsByTagName("name")[0]?.innerHTML)
+                suppArray.push(demension?.getElementsByTagName("name")[0]?.textContent)
                 
               }
              
@@ -95,7 +108,7 @@ function Crediteuren() {
               const parseHtml = new DOMParser();
               const xmlDoc2 = parseHtml.parseFromString(offices,"text/xml");
               const XML_ROW = (xmlDoc2.getElementsByTagName("offices")[0])
-              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.innerHTML)
+              setCompanyCode(XML_ROW?.getElementsByTagName("office")[0]?.textContent)
               
             }
           }
@@ -108,32 +121,31 @@ function Crediteuren() {
         <>
          <div className='flex flex-col'>
           <Header activeCred={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
-          <main className="flex min-h-screen bg-black">
+          <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
          </div>
-            <div className="flex ml-8 mt-20">
-            {accesToken &&<div>
+            <div ref={parent} className=" flex ml-8 mt-20">
+            {accesToken &&<div className='flex text-white mt-4'>
+
+            <div>
                  
                  {/*Data invoer zie oude template rubyapp*/}
                  <Link href={`/crediteuren/toevoegen#id_token=${fullsplit}`}><button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2
               text-white hover:bg-white/20 mr-2'>Crediteur Toevoegen</button></Link>
-             </div>}
+             </div>
               {/*with acces*/}  
               {accesToken && 
-              <div>
-                <p className="text-white flex-col font-bold text-3xl">Crediteuren</p>
-                <p className="text-white font-extralight text-2xl">{suppliers?.map((sup:string, i:number) => {
+              <div className='ml-6 w-full'>
+                 <p className="text-white flex-col font-bold text-2xl">Crediteuren</p>
+                 <p className="h-72  mt-4 rounded-md border border-purple-400 drop-shadow-md drop bg-gray-800 p-2 overflow-y-scroll scrollbar-hide text-white font-extralight text-1xl">{suppliers?.map((sup:string, i:number) => {
                 return <div key={i}><p>{sup}</p></div>
               })}</p>
               </div>}
-              
+              </div>}
             </div>
           
-            {/*without acces*/}  
-            {!accesToken && 
-            <PublicProcedure handleLogin={handleLogin}/>}
-            
+           
           </main>
           </div>
         </>

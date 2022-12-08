@@ -10,6 +10,7 @@ import Image from "next/image"
 import PublicProcedure from "../Components/PublicProcedure";
 import {RiArrowDropDownFill} from "react-icons/ri"
 import autoAnimate from "@formkit/auto-animate";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 //DEV REDIRECT_URL
 
@@ -18,11 +19,12 @@ import autoAnimate from "@formkit/auto-animate";
 const Home: NextPage = () => {
   const [accesToken, setAccesToken] = useState<string>("");
   const [fullsplit, setFullSplit] = useState<string>("");
-  const [office, setOffice] = useState<string | null | undefined>("Loading...");
+  const [office, setOffice] = useState<string | null | undefined>("");
   const router = useRouter();
   const [show, setShow] = useState(false)
   const parent = useRef(null)
-  const reveal = () => setShow(!show)
+  const parentPage = useRef(null)
+  
 
   useEffect(() => {
     let accestoken:string | undefined = "";
@@ -36,14 +38,20 @@ const Home: NextPage = () => {
   });
 
 useEffect(() => {
-
+  parent.current && autoAnimate(parent.current)
+  parentPage.current && autoAnimate(parentPage.current)
 getOffices()
 
 },[accesToken])
 
 useEffect(() => {
   parent.current && autoAnimate(parent.current)
-}, [parent])
+  parentPage.current && autoAnimate(parentPage.current)
+}, [parentPage, parent])
+
+const reveal = () => {
+  setShow(!show)
+}
 
 const handleLogin = () => {
   window.location.replace(
@@ -87,16 +95,13 @@ const handleLogout = () => {
   
     // Return a greeting based on the current hour
     if (hour >= 0 && hour < 12) {
-      return "Goedemorgen klant!,";
+      return "Goedemorgen en welkom terug!";
     } else if (hour >= 12 && hour < 18) {
-      return "Goedemiddag klant!";
+      return "Goedemiddag en welkom terug!";
     } else {
-      return "Goedenavond klant!";
+      return "Goedenavond en welkom terug!";
     }
   }
-
-
-    
 
   return (
     <>
@@ -114,27 +119,27 @@ const handleLogout = () => {
         handleLogout={handleLogout} 
         accesToken={accesToken}/>
 
-        <main className="flex min-h-screen bg-black">
+        <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
           </div>
-          {accesToken && <div className="sm:flex lg:flex ml-8 mt-20">
+          <div className="sm:flex lg:flex ml-8 mt-20" ref={parentPage}>
+          {accesToken && <div  className="flex">
          
             <div ref={parent}>
-              <p onClick={reveal} className="dropdown-label flex cursor-pointer text-indigo-400 font-semibold  decoration-indigo-400 text-1xl hover:text-indigo-300 ">Selecteer administratie<RiArrowDropDownFill className="dropdown-label h-7 w-7"/></p>
-              {show &&<p className="dropdown-content flex text-white font-normal text-1xl ">{office}</p>}
+              <p onClick={reveal} className="dropdown-label flex cursor-pointer text-purple-800 font-semibold  text-1xl hover:text-purple-900 ">Selecteer administratie<RiArrowDropDownFill className="h-7 w-7"/></p>
+              {show && <p className="dropdown-content flex text-white font-normal text-1xl ">{office}</p>}
             </div>
+
+
             <div className="flex flex-col mr-4 lg:ml-4">
-            <div className="text-white font-bold text-2xl">
+            <div className="text-white font-bold text-2xl mt-14">
               {getGreeting()}
             </div>
            
-            <div className="mt-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md 
+            <div className="mt-8 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md 
             dark:bg-gray-800 dark:border-gray-700">
-              <Image 
-              width={500}
-              height={500} src="https://i.imgur.com/p5bASKY.jpg" alt="">
-              </Image>
+              
               
               <div className="p-5">
                 <a href="#">
@@ -164,6 +169,7 @@ const handleLogout = () => {
              
               </div>
         </div>}
+        </div>
         
           {!accesToken && 
               <PublicProcedure handleLogin={handleLogin}/>}

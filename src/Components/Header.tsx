@@ -53,22 +53,22 @@ function Header({
           {accesToken && <button onClick={() => handleLogout()} className='mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden'>Sign Out</button>}
 
           <li>
-          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-indigo-300": "text-white"} `} aria-current="page">Dashboard</p></Link>
+          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-gray-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
           </li>
           <li>
-          <Link href={`/facturen#id_token=${fullSplit}`}><p  className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-indigo-300": "text-white"} `}>Facturen</p></Link>
+          <Link href={`/facturen#id_token=${fullSplit}`}><p  className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-gray-400": "text-white"} `}>Facturen</p></Link>
           </li>
           <li>
-          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-indigo-300": "text-white"} `}>Crediteuren</p></Link>
+          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-gray-400": "text-white"} `}>Crediteuren</p></Link>
           </li>
           <li>
-          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-indigo-300": "text-white"} `}>Relaties</p></Link>
+          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-gray-400": "text-white"} `}>Relaties</p></Link>
           </li>
           <li>
             <p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Offertes</p>
           </li>
           <li>
-            <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Bankkoppeling</a>
+          <Link href={`/producten#id_token=${fullSplit}`}><p className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Producten</p></Link>
           </li>
           <li>
             <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white  md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Rapportages</a>
@@ -89,28 +89,28 @@ function Header({
         <ul className="items-center justify-center font-bold flex flex-col border z-10 bg-black border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-lg md: md:border-0 md:backdrop-blur-sm md:bg-transparent">
         
           <li>
-          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-indigo-300": "text-white"} `} aria-current="page">Dashboard</p></Link>
+          <Link href={`/#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeDash ? "text-gray-400": "text-white"} `} aria-current="page">Dashboard</p></Link>
           </li>
           <li>
-          <Link href={`/facturen#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-indigo-300": "text-white"} `}>Facturen</p></Link>
+          <Link href={`/facturen#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeFac ? "text-gray-400": "text-white"} `}>Facturen</p></Link>
           </li>
           <li>
-          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-indigo-300": "text-white"} `}>Crediteuren</p></Link>
+          <Link href={`/crediteuren#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeCred ? "text-gray-400": "text-white"} `}>Crediteuren</p></Link>
           </li>
           <li>
-          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-indigo-300": "text-white"} `}>Relaties</p></Link>
+          <Link href={`/relaties#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRel ? "text-gray-400": "text-white"} `}>Relaties</p></Link>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeOff ? "text-indigo-300": "text-white"} `}>Offertes</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeOff ? "text-gray-400": "text-white"} `}>Offertes</a>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeBank ? "text-indigo-300": "text-white"} `}>Bankkoppeling</a>
+          <Link href={`/producten#id_token=${fullSplit}`}><p className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeBank ? "text-gray-400": "text-white"} `}>Producten</p></Link>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRapp ? "text-indigo-300": "text-white"} `}>Rapportages</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeRapp ? "text-gray-400": "text-white"} `}>Rapportages</a>
           </li>
           <li>
-            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeAgenda ? "text-indigo-300": "text-white"} `}>Agenda</a>
+            <a href="#" className={`block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 ${activeAgenda ? "text-gray-400": "text-white"} `}>Agenda</a>
           </li>
           <li>
           {!accesToken && <button onClick={() => handleLogin()} className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20'>Sign in</button>}

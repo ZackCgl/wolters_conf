@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
+import { addRelatiesSoap } from '../../../soap/addRelatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
-import { addCrediteurSoap } from '../../../soap/addCrediteurSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
 
 function Toevoegen() {
     const [accesToken, setAccesToken] = useState<string>("");
     const [companyCode, setCompanyCode] = useState<any>()
-    const [fullsplit, setFullSplit] = useState<string | undefined>("");
+    const [fullsplit, setFullSplit] = useState<string>("");
     const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
     const router = useRouter();
     const [naam, setNaam] = useState("")
@@ -21,7 +21,8 @@ function Toevoegen() {
         const secondsplit = firstsplit[1]?.split("&token_type")[0];
         accestoken = secondsplit;
         accestoken && setAccesToken(accestoken);
-        const fullsplit = router.asPath.split("#id_token=")[1];
+
+        const fullsplit:any = router.asPath.split("#id_token=")[1];
         setFullSplit(fullsplit);
       });
       
@@ -29,18 +30,20 @@ function Toevoegen() {
 
         getCompanyCode()
         
-        
         }, [accesToken, companyCode, succesfullAddedRelatie])
         
         const handleLogin = () => {
             window.location.replace(
-              `https://login.twinfield.com/auth/authentication/connect/authorize?client_id=rubyf&redirect_uri=${REDIRECT_URL}&response_type=id_token+token&scope=openid+twf.user+twf.organisation+twf.organisationUser&state=SOME_RANDOM_STATE&nonce=SOME_RANDOM_NONCE`
+              `https://login.twinfield.com/auth/authentication/connect/authorize?client_id=
+              rubyf&redirect_uri=${REDIRECT_URL}&response_type=id_token+token&scope=openid+
+              twf.user+twf.organisation+twf.organisationUser&state=SOME_RANDOM_STATE&nonce=SOME_RANDOM_NONCE`
             );
           };
         
           const handleLogout = () => {
             window.location.replace(REDIRECT_URL as string);
           };
+
 
       function addRelatie(){
         const xmlhttp = new XMLHttpRequest();
@@ -49,13 +52,13 @@ function Toevoegen() {
           "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
           true
         );
-        const sr = addCrediteurSoap({accesToken, companyCode, naam})
+        const sr = addRelatiesSoap({accesToken, companyCode, naam})
         xmlhttp.onreadystatechange = () => {
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
              setSuccesFullAddedRelatie(!succesfullAddedRelatie)
              setNaam("")
-             router.push(`/crediteuren/#id_token=${fullsplit}`)
+             router.push(`/relaties/#id_token=${fullsplit}`)
             }
           }
         }
@@ -94,7 +97,8 @@ function Toevoegen() {
       return (
         <>
          <div className='flex flex-col'>
-          <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          <Header fullSplit={fullsplit} handleLogin={handleLogin} 
+          handleLogout={handleLogout} accesToken={accesToken}/>
           <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -104,22 +108,23 @@ function Toevoegen() {
               {/*---PROTECTED PROCEDURE---*/}  
               {accesToken && 
               <div className='flex flex-col text-white'>
-                 {/*Relaties mappen */}
                 <div>
-                  <p className="text-white flex-col font-bold text-3xl">Crediteur toevoegen</p>
-                  
+                  <p className="text-white flex-col font-bold text-3xl">Product toevoegen</p>
                 </div>
 
-              {/*Relatie aanmaken */}
                 <div className='mt-4'>
-                 
-                    {/*Data invoer zie oude template rubyapp*/}
-                  <label className='font-bold mr-2'>Naam:</label><input className='rounded-md text-black font-bold' value={naam} onChange={(e) => setNaam(e.target.value)} />
-                  <button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2 text-white hover:bg-white/20' onClick={addRelatie}>Add Relatie</button>
-
+                  <label className='font-bold mr-2'>Naam:</label>
+                  <input className='rounded-md text-black 
+                  font-bold' 
+                  value={naam} 
+                  onChange={(e) => setNaam(e.target.value)} />
+                  <button className='mt-4 flex flex-col rounded-xl bg-white/10 p-2 
+                  text-white hover:bg-white/20' 
+                  onClick={addRelatie}>
+                  Add Product
+                  </button>
                 </div>
               </div>}
-              
             </div>
           
            
