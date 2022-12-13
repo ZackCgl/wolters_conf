@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { REDIRECT_URL } from "../../../soap/redirect";
+import { REDIRECT_URL } from "../../Components/data/redirect";
 import Header from "../../Components/Header";
 import Sidebar from "../../Components/Sidebar";
-import { productsSoap } from "../../../soap/productsSoap";
-import { OfficesSoap } from "../../../soap/officesSoap";
-import { addInvoicesSoap } from "../../../soap/addInvoiceSoap";
-import { relatiesSoap } from "../../../soap/relatiesSoap";
+import { productsSoap } from "../../Components/data/productsSoap";
+import { OfficesSoap } from "../../Components/data/officesSoap";
+import { addInvoicesSoap } from "../../Components/data/addInvoiceSoap";
+import { relatiesSoap } from "../../Components/data/relatiesSoap";
 import PublicProcedure from "../../Components/PublicProcedure";
 import autoAnimate from "@formkit/auto-animate";
 import { useAutoAnimate } from "@formkit/auto-animate/react";

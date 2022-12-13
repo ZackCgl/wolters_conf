@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { REDIRECT_URL } from "../../../soap/redirect";
+import { REDIRECT_URL } from "../../Components/data/redirect";
 import Header from "../../Components/Header";
 import Sidebar from "../../Components/Sidebar";
-import { invoiceSoap } from "../../../soap/invoiceSoap";
-import { OfficesSoap } from "../../../soap/officesSoap";
+import { invoiceSoap } from "../../Components/data/invoiceSoap";
+import { OfficesSoap } from "../../Components/data/officesSoap";
 import PublicProcedure from "../../Components/PublicProcedure";
 import Footer from "../../Components/Footer";
 
