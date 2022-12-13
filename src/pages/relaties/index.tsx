@@ -147,7 +147,7 @@ function Index() {
                       className=" flex flex-col rounded-xl bg-white/10 p-2
                  text-white hover:bg-white/20"
                     >
-                      Relatie Toevoegen
+                      Relatie Toevoegen!
                     </button>
                   </Link>
                 </div>
