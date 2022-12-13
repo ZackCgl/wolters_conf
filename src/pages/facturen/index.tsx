@@ -8,6 +8,7 @@ import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
 import autoAnimate from '@formkit/auto-animate';
+import Footer from '../../Components/Footer';
 
 function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -142,6 +143,7 @@ function Index() {
             
           
           </main>
+          <Footer />
           </div>
         </>
       );

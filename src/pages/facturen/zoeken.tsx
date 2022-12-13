@@ -6,6 +6,7 @@ import Sidebar from '../../Components/Sidebar';
 import { invoiceSoap } from '../../../soap/invoiceSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
+import Footer from '../../Components/Footer';
 
 function Zoeken() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -163,6 +164,7 @@ function Zoeken() {
           
             
           </main>
+          <Footer />
           </div>
         </>
       );

@@ -11,6 +11,7 @@ import PublicProcedure from '../../Components/PublicProcedure';
 import autoAnimate from '@formkit/auto-animate';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import Link from 'next/link';
+import Footer from '../../Components/Footer';
 
 function Aanmaken() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -159,7 +160,7 @@ function Aanmaken() {
             
             const added = suppArray.filter((e: string) => e !== 'DEB'); // will return ['A', 'C']
             const added2 = added.join(" ").split("//")
-             setRelations(added2)
+            setRelations(added2)
             console.log(suppArray.join(" ").split("//"))
             }
           }
@@ -284,12 +285,6 @@ function Aanmaken() {
         getProducts()
        }
       
-       function calcDelayAccesToken(){
-        setTimeout(() => {
-          console.log("Delayed for 1 second.");
-        }, 1000)
-        return "delayed"
-       }
       
       return (
         <>
@@ -387,6 +382,7 @@ function Aanmaken() {
             </div>
           
           </main>
+          <Footer />
           </div>
         </>
       );

@@ -6,6 +6,7 @@ import Sidebar from '../../Components/Sidebar';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import { addCrediteurSoap } from '../../../soap/addCrediteurSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
+import Footer from '../../Components/Footer';
 
 function Toevoegen() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -94,7 +95,9 @@ function Toevoegen() {
       return (
         <>
          <div className='flex flex-col'>
+         <div className="z-10">
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          </div>
           <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -124,10 +127,13 @@ function Toevoegen() {
           
            
           </main>
+
+          <Footer />
+          
           </div>
         </>
       );
-}
+} 
 
 export default Toevoegen
 

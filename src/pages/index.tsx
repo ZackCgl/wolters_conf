@@ -6,11 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import { OfficesSoap } from "../../soap/officesSoap";
 import {  REDIRECT_URL } from "../../soap/redirect";
 import Sidebar from "../Components/Sidebar";
-import Image from "next/image"
 import PublicProcedure from "../Components/PublicProcedure";
 import {RiArrowDropDownFill} from "react-icons/ri"
 import autoAnimate from "@formkit/auto-animate";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Footer from "../Components/Footer";
 
 //DEV REDIRECT_URL
 
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
   const [show, setShow] = useState(false)
   const parent = useRef(null)
   const parentPage = useRef(null)
-  
+  const parentHeader = useRef(null)
 
   useEffect(() => {
     let accestoken:string | undefined = "";
@@ -40,6 +40,7 @@ const Home: NextPage = () => {
 useEffect(() => {
   parent.current && autoAnimate(parent.current)
   parentPage.current && autoAnimate(parentPage.current)
+  parentHeader.current && autoAnimate(parentHeader.current)
 getOffices()
 
 },[accesToken])
@@ -47,7 +48,17 @@ getOffices()
 useEffect(() => {
   parent.current && autoAnimate(parent.current)
   parentPage.current && autoAnimate(parentPage.current)
+
 }, [parentPage, parent])
+useEffect(() => {
+  parent.current && autoAnimate(parent.current)
+  parentPage.current && autoAnimate(parentPage.current)
+ 
+}, [parentPage, parent])
+useEffect(() => {
+
+  parentHeader.current && autoAnimate(parentHeader.current)
+}, [parentPage, parent, parentHeader])
 
 const reveal = () => {
   setShow(!show)
@@ -111,14 +122,15 @@ const handleLogout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col">
+      <div  className="flex flex-col">
+        <div className="z-10" ref={parentHeader}> 
       <Header 
         activeDash={true} 
         fullSplit={fullsplit} 
         handleLogin={handleLogin} 
         handleLogout={handleLogout} 
         accesToken={accesToken}/>
-
+</div>
         <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -175,6 +187,7 @@ const handleLogout = () => {
               <PublicProcedure handleLogin={handleLogin}/>}
         
         </main>
+        <Footer />
       </div>
     </>
   );

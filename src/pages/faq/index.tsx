@@ -6,6 +6,7 @@ import Sidebar from '../../Components/Sidebar';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import Accordion from '../../Components/Accordion';
 import PublicProcedure from '../../Components/PublicProcedure';
+import Footer from '../../Components/Footer';
 
 function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -69,7 +70,9 @@ function Index() {
       return (
         <>
          <div className='flex flex-col'>
+         <div className="z-10">
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          </div>
           <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} activeFaq={true} />
@@ -77,17 +80,18 @@ function Index() {
             <div className="flex ml-8 mt-20">
               
               {/*---PROTECTED PROCEDURE---*/}  
-              {accesToken && 
+             
               <div className='flex text-white'>
 
               {/*Accordion Component */}
               <Accordion />
                  
-              </div>}
+              </div>
               
             </div>
           
           </main>
+          <Footer />
           </div>
         </>
       );

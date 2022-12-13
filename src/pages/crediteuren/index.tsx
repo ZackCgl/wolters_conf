@@ -8,6 +8,7 @@ import Sidebar from '../../Components/Sidebar';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
 import autoAnimate from '@formkit/auto-animate';
+import Footer from '../../Components/Footer';
 
 function Crediteuren() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -120,7 +121,9 @@ function Crediteuren() {
       return (
         <>
          <div className='flex flex-col'>
+         <div className="z-10">
           <Header activeCred={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          </div>
           <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -147,6 +150,7 @@ function Crediteuren() {
           
            
           </main>
+          <Footer />
           </div>
         </>
       );

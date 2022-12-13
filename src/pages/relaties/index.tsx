@@ -8,6 +8,7 @@ import { relatiesSoap } from '../../../soap/relatiesSoap';
 import { OfficesSoap } from '../../../soap/officesSoap';
 import PublicProcedure from '../../Components/PublicProcedure';
 import autoAnimate from '@formkit/auto-animate';
+import Footer from '../../Components/Footer';
 
 function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -118,7 +119,9 @@ function Index() {
       return (
         <>
          <div className='flex flex-col'>
+         <div className="z-10">
           <Header activeRel={true} fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          </div>
           <main className="flex min-h-screen bg-gray-900">
           <div>
           <Sidebar fullSplit={fullsplit} />
@@ -153,6 +156,7 @@ function Index() {
           </div>
           
           </main>
+          <Footer />
           </div>
         </>
       );

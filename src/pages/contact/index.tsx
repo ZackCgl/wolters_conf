@@ -4,8 +4,9 @@ import { REDIRECT_URL } from '../../../soap/redirect';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
 import { OfficesSoap } from '../../../soap/officesSoap';
-import PublicProcedure from '../../Components/PublicProcedure';
 import Footer from '../../Components/Footer';
+import Privacy from '../../Components/Privacy';
+import ContactDetails from '../../Components/ContactDetails';
 
 function Index() {
     const [accesToken, setAccesToken] = useState<string>("");
@@ -13,7 +14,7 @@ function Index() {
     const [fullsplit, setFullSplit] = useState<string>("");
     const [succesfullAddedRelatie, setSuccesFullAddedRelatie] = useState<boolean>(false)
     const router = useRouter();
-    
+
     useEffect(() => {
         let accestoken:string | undefined = "";
         const firstsplit = router.asPath.split("access_token=");
@@ -69,26 +70,23 @@ function Index() {
       return (
         <>
          <div className='flex flex-col'>
+         <div className="z-10">
           <Header fullSplit={fullsplit} handleLogin={handleLogin} handleLogout={handleLogout} accesToken={accesToken}/>
+          </div>
           <main className="flex min-h-screen bg-gray-900">
           <div>
-          <Sidebar fullSplit={fullsplit} activeIns={true} />
+          <Sidebar fullSplit={fullsplit} activeFaq={true} />
          </div>
             <div className="flex ml-8 mt-20">
               
               {/*---PROTECTED PROCEDURE---*/}  
-              {accesToken && 
-              <div className='flex text-white'>
-                
+             
+              <div className='flex justify-center text-white'>
 
-              {/*Relatie aanmaken */}
-               
-                 {/*Relaties mappen */}
-                 <div className='ml-4'>
-                  <p className="text-white flex-col font-bold text-3xl">Instellingen</p>
-                  
-                </div>
-              </div>}
+              {/*Accordion Component */}
+              <ContactDetails />
+                 
+              </div>
               
             </div>
           
