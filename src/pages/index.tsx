@@ -14,7 +14,7 @@ import Footer from "../Components/Footer";
 
 //DEV REDIRECT_URL
 
-const Home: NextPage = () => {
+const Home = () => {
   const [accesToken, setAccesToken] = useState<string>("");
   const [fullsplit, setFullSplit] = useState<string>("");
   const [office, setOffice] = useState<string | null | undefined>("");
