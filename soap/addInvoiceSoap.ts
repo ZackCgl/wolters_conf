@@ -1,13 +1,17 @@
-
 // build SOAP request
-interface Props{
-    accesToken: string;
-    companyCode: string;
-    chosenCustomer: String;
+interface Props {
+  accesToken: string;
+  companyCode: string;
+  chosenCustomer: String;
 }
 
-export const addInvoicesSoap = ({accesToken, companyCode, chosenCustomer}:Props) => {
-     const sr = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:twin="http://www.twinfield.com/">' +
+export const addInvoicesSoap = ({
+  accesToken,
+  companyCode,
+  chosenCustomer,
+}: Props) => {
+  const sr =
+    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:twin="http://www.twinfield.com/">' +
     "<soapenv:Header> " +
     "<twin:Header> " +
     `<twin:AccessToken>${accesToken}</twin:AccessToken>` +
@@ -41,7 +45,5 @@ export const addInvoicesSoap = ({accesToken, companyCode, chosenCustomer}:Props)
     "</twin:ProcessXmlString>" +
     "</soapenv:Body>" +
     "</soapenv:Envelope>";
-    return sr
-}
-
-  
+  return sr;
+};

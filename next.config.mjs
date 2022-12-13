@@ -13,8 +13,8 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
-  images:{
-    domains: ["i.imgur.com"]
-  }
+  images: {
+    domains: ["i.imgur.com"],
+  },
 };
 export default config;
