@@ -2,7 +2,7 @@
 interface Props {
   accesToken: string;
   companyCode: string;
-  chosenCustomer: String;
+  chosenCustomer: string;
 }
 
 export const addInvoicesSoap = ({

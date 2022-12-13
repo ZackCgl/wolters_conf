@@ -2,7 +2,7 @@
 interface Props {
   accesToken: string;
   companyCode: string;
-  naam: String;
+  naam: string;
 }
 
 export const addRelatiesSoap = ({ accesToken, companyCode, naam }: Props) => {

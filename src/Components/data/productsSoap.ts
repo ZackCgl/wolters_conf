@@ -2,7 +2,7 @@
 interface Props {
   accesToken: string;
   companyCode: string;
-  products: String;
+  products: string;
 }
 
 export const productsSoap = ({ accesToken, companyCode, products }: Props) => {
