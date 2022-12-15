@@ -6,8 +6,8 @@ interface Props {
 
 function PublicProcedure({ handleLogin }: Props) {
   return (
-    <div className="flex items-center">
-      <div className="container flex flex-col py-16 font-medium text-white lg:mt-10 ">
+    <div className=" mt-10 grid grid-cols-1 items-center lg:grid-cols-2 ">
+      <div className="container mr-4 flex flex-col py-16 font-medium text-white lg:mt-10 ">
         <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
           Het beheren van{" "}
         </h1>
@@ -37,15 +37,15 @@ function PublicProcedure({ handleLogin }: Props) {
           </button>
         </div>
       </div>
-      <div className="hidden min-h-screen items-center justify-center px-16 lg:z-10 lg:flex">
+      <div className="-ml-10 min-h-screen items-center justify-center lg:z-10 lg:flex">
         <div className="relative w-full max-w-lg">
-          <div className="absolute top-0 -left-4 h-72 w-72 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
-          <div className="animation-delay-2000 absolute top-0 -right-4 h-72 w-72 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
-          <div className="animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 animate-blob rounded-full bg-pink-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
+          <div className="absolute top-0 -left-4 h-10 w-10 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
+          <div className="animation-delay-2000 absolute top-0 -right-4 h-10 w-10 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
+          <div className="animation-delay-4000 absolute -bottom-8 left-20 h-10 w-10 animate-blob rounded-full bg-pink-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
           <div className="relative m-8 space-y-4">
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
               <div className="flex-1">
-                <div className="h-8 w-48 items-center rounded bg-gray-100">
+                <div className="w-38 h-8 items-center rounded bg-gray-100 lg:w-48">
                   <p className="p-1 font-medium text-black">
                     Facturen aanmaken
                   </p>
@@ -57,7 +57,7 @@ function PublicProcedure({ handleLogin }: Props) {
             </div>
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
               <div className="flex-1">
-                <div className="h-8 w-56 items-center rounded bg-gray-100">
+                <div className="h-8 items-center rounded bg-gray-100 lg:w-56">
                   <p className="p-1 font-medium text-black">
                     Bonnetjes uploaden
                   </p>
@@ -69,14 +69,14 @@ function PublicProcedure({ handleLogin }: Props) {
             </div>
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
               <div className="flex-1">
-                <div className="h-8 w-48 items-center rounded bg-gray-100">
+                <div className="h-8 items-center rounded bg-gray-100 lg:w-48">
                   <p className="p-1 font-medium text-black">
                     Statistieken bekijken
                   </p>
                 </div>
               </div>
               <div>
-                <div className="h-6 w-28 rounded-lg bg-pink-300"></div>
+                <div className="h-6 w-20 rounded-lg bg-pink-300"></div>
               </div>
             </div>
           </div>
