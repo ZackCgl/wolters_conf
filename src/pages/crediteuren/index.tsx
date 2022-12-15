@@ -129,10 +129,10 @@ function Crediteuren() {
           />
         </div>
         <main className="flex min-h-screen bg-gray-900">
-          <div>
+          <div className="z-10">
             <Sidebar fullSplit={fullsplit} />
           </div>
-          <div ref={parent} className=" ml-8 mt-20 flex">
+          <div ref={parent} className=" ml-8 mt-20 mr-4 flex">
             {accesToken && (
               <div className="mt-4 flex text-white">
                 <div>

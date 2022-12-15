@@ -112,13 +112,15 @@ function Index() {
   return (
     <>
       <div className="flex flex-col">
-        <Header
-          activeFac={true}
-          fullSplit={fullsplit}
-          handleLogin={handleLogin}
-          handleLogout={handleLogout}
-          accesToken={accesToken}
-        />
+        <div className="z-10">
+          <Header
+            activeFac={true}
+            fullSplit={fullsplit}
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            accesToken={accesToken}
+          />
+        </div>
         <main className="flex min-h-screen bg-gray-900">
           <div>
             <Sidebar fullSplit={fullsplit} />

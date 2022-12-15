@@ -38,7 +38,7 @@ function Header({
 
   return (
     <div>
-      <nav className=" fixed h-14 w-screen border-gray-200 px-2 py-2.5 backdrop-blur-sm sm:px-4">
+      <nav className="fixed h-14 w-screen border-gray-200 px-2 py-2.5 backdrop-blur-sm sm:px-4">
         <div className="container mx-auto flex flex-wrap items-center justify-between ">
           <Link href={`/#id_token=${fullSplit}`}>
             {" "}
@@ -54,7 +54,7 @@ function Header({
           <button
             onClick={handleMobile}
             type="button"
-            className=" ml-3 inline-flex items-center rounded-lg p-2 text-sm md:hidden "
+            className=" ml-3 inline-flex items-center rounded-lg p-2 text-sm lg:hidden "
             aria-controls="navbar-default"
             aria-expanded="false"
           >
@@ -74,12 +74,12 @@ function Header({
             </svg>
           </button>
           {toggle && (
-            <div className="w-full md:hidden md:w-auto" id="navbar-default">
-              <ul className=" z-10 mt-4 flex flex-col justify-center  rounded-lg bg-gradient-to-b from-[#5a6cf4fc] to-[#313b7afa] p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-sm md:font-medium md:backdrop-blur-sm">
+            <div className=" w-full lg:hidden" id="navbar-default">
+              <ul className="z-10 mt-4 flex flex-col justify-center rounded-lg bg-gradient-to-b from-[#5a6cf4fc] to-[#313b7afa] p-4 md:space-y-3 ">
                 {!accesToken && (
                   <button
                     onClick={() => handleLogin()}
-                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden"
+                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
                   >
                     Inloggen
                   </button>
@@ -87,7 +87,7 @@ function Header({
                 {accesToken && (
                   <button
                     onClick={() => handleLogout()}
-                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden"
+                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
                   >
                     Sign Out
                   </button>
@@ -185,11 +185,8 @@ function Header({
               </ul>
             </div>
           )}
-          <div
-            className="hidden w-full p-4 md:block md:w-auto"
-            id="navbar-default"
-          >
-            <ul className="md: z-10 flex flex-col items-center justify-center rounded-lg border border-gray-100 bg-black font-bold md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-lg md:backdrop-blur-sm">
+          <div className="hidden p-4 lg:flex" id="navbar-default">
+            <ul className="z-10 flex flex-col items-center justify-center rounded-lg border border-gray-100 bg-black font-bold md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:backdrop-blur-sm lg:text-sm xl:text-lg">
               {accesToken && (
                 <li>
                   <Link href={`/#id_token=${fullSplit}`}>

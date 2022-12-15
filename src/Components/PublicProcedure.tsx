@@ -7,16 +7,22 @@ interface Props {
 function PublicProcedure({ handleLogin }: Props) {
   return (
     <div className="flex items-center">
-      <div className="container mt-10 flex flex-col px-4 py-16 font-medium text-white ">
-        <h1 className="text-7xl">Het beheren van </h1>
-        <h1 className="text-7xl">uw financiën is</h1>
-        <h1 className="text-7xl">een fluitje van een cent</h1>
-        <div className="ml-1">
-          <p className="mt-4 text-2xl font-light">
+      <div className="container flex flex-col py-16 font-medium text-white lg:mt-10 ">
+        <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
+          Het beheren van{" "}
+        </h1>
+        <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
+          uw financiën is
+        </h1>
+        <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
+          een fluitje van een cent
+        </h1>
+        <div className="lg:ml-1">
+          <p className="md:text-1xl mt-4 font-light lg:text-2xl">
             Vereenvoudig uw boekhoudproces en maak meer tijd vrij voor uw
             bedrijf.
           </p>
-          <p className="text-2xl font-light">
+          <p className="md:text-1xl font-light lg:text-2xl">
             Met onze tool regel je snel je declaraties, facturen en andere
             financiële documenten
           </p>
@@ -31,7 +37,7 @@ function PublicProcedure({ handleLogin }: Props) {
           </button>
         </div>
       </div>
-      <div className="z-10 flex min-h-screen items-center justify-center px-16">
+      <div className="hidden min-h-screen items-center justify-center px-16 lg:z-10 lg:flex">
         <div className="relative w-full max-w-lg">
           <div className="absolute top-0 -left-4 h-72 w-72 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
           <div className="animation-delay-2000 absolute top-0 -right-4 h-72 w-72 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
@@ -74,6 +80,11 @@ function PublicProcedure({ handleLogin }: Props) {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="absolute">
+        <div>
+          <div className="-mt-10 -ml-20 h-96 w-96 animate-blop rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition"></div>
         </div>
       </div>
     </div>

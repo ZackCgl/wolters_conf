@@ -317,7 +317,7 @@ function Aanmaken() {
             {/*with acces*/}
             {accesToken ? (
               <div className="text-white">
-                <p className=" flex-col text-3xl font-bold">Aanmaken</p>
+                <p className="flex-col text-3xl font-bold">Aanmaken</p>
                 <div>
                   <div className="flex">
                     <div ref={parentDebiteuren}>
@@ -399,62 +399,64 @@ function Aanmaken() {
                       </Link>
                     </div>
                   </div>
-                  <div className="flex">
-                    <div className="p-2">
-                      <label>Code</label>
-                      <p>{soapProducts}</p>
-                    </div>
-                    <div className="p-2">
-                      <label>Naam</label>
-                      <p>{soapName}</p>
-                    </div>
-                    <div className="p-2">
-                      <label>Producten</label>
-                      <p>
-                        {producten?.map((line: any, i: number) => {
-                          return <div key={i}>{line}</div>;
-                        })}
-                      </p>
-                    </div>
-                    <div className="p-2">
-                      <label>Eenheden</label>
-                      <p>
-                        {units?.map((unit: any, i: number) => {
-                          return <div key={i}>{unit}</div>;
-                        })}
-                      </p>
-                    </div>
-                    <div className="p-2">
-                      <label>Vatcode</label>
-                      <p>{vatcode}</p>
-                    </div>
-                    <div className="p-2">
-                      <label>Ex. btw</label>
-                      <p>
-                        {exbtw?.map((ex: any, i: number) => {
-                          return <div key={i}>{ex}</div>;
-                        })}
-                      </p>
-                    </div>
-                    <div className="p-2">
-                      <label>Inc. btw</label>
-                      <p>
-                        {incbtw?.map((inc: any, i: number) => {
-                          return <div key={i}>{inc}</div>;
-                        })}
-                      </p>
-                    </div>
-                    <div className="p-2">
-                      <label>Grootboek</label>
-                      <p>
-                        {grootboek?.map((grootboek: any, i: number) => {
-                          return <div key={i}>{grootboek}</div>;
-                        })}
-                      </p>
-                    </div>
-                    <div className="p-2">
-                      <label>Totaal</label>
-                      <p>TBC</p>
+                  <div className="">
+                    <div className="mt-4 grid grid-cols-2 lg:mt-2 lg:grid-cols-8">
+                      <div className="p-2">
+                        <label>Code</label>
+                        <p>{soapProducts}</p>
+                      </div>
+                      <div className="p-2">
+                        <label>Naam</label>
+                        <p>{soapName}</p>
+                      </div>
+                      <div className="p-2">
+                        <label>Producten</label>
+                        <p>
+                          {producten?.map((line: any, i: number) => {
+                            return <div key={i}>{line}</div>;
+                          })}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <label>Eenheden</label>
+                        <p>
+                          {units?.map((unit: any, i: number) => {
+                            return <div key={i}>{unit}</div>;
+                          })}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <label>Vatcode</label>
+                        <p>{vatcode}</p>
+                      </div>
+                      <div className="p-2">
+                        <label>Ex. btw</label>
+                        <p>
+                          {exbtw?.map((ex: any, i: number) => {
+                            return <div key={i}>{ex}</div>;
+                          })}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <label>Inc. btw</label>
+                        <p>
+                          {incbtw?.map((inc: any, i: number) => {
+                            return <div key={i}>{inc}</div>;
+                          })}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <label>Grootboek</label>
+                        <p>
+                          {grootboek?.map((grootboek: any, i: number) => {
+                            return <div key={i}>{grootboek}</div>;
+                          })}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <label>Totaal</label>
+                        <p>TBC</p>
+                      </div>
                     </div>
                   </div>
 

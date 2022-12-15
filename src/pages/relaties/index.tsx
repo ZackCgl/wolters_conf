@@ -136,7 +136,7 @@ function Index() {
           <div>
             <Sidebar fullSplit={fullsplit} />
           </div>
-          <div ref={parentPage} className="ml-8 mt-20 flex">
+          <div ref={parentPage} className="ml-8 mt-20 mr-4 flex">
             {/*---PROTECTED PROCEDURE---*/}
             {accesToken && (
               <div className="mt-4 flex text-white">
