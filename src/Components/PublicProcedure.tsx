@@ -82,36 +82,9 @@ function PublicProcedure({ handleLogin }: Props) {
           </div>
         </div>
       </div>
-      <div className="lg:absolute lg:h-full">
+      <div className="absolute">
         <div>
-          <div className="-mt-10 -ml-20 h-4 w-4 animate-blop rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition lg:h-96 lg:w-96"></div>
-          <div className="md:hidden">
-            <div className="absolute -mt-96 mr-4 text-white">
-              <p className="-mt-20 text-gray-500 dark:text-gray-400">
-                Onze online boekhoudapplicatie is ontworpen om het gemakkelijker
-                dan ooit te maken om uw financiën te beheren en de baas te
-                blijven over uw bedrijf. Met onze krachtige functies kunt u uw
-                facturen uploaden en opslaan, en gemakkelijk facturen maken en
-                verzenden naar uw klanten.
-              </p>
-              <blockquote className="my-4 border-l-4 border-gray-300 bg-gray-50 p-4 dark:border-gray-500 dark:bg-gray-800">
-                <p className="text-xl font-medium italic leading-relaxed text-gray-900 dark:text-white">
-                  Dit betekent dat u uw inkomsten en uitgaven kunt bijhouden en
-                  uw boekhouding georganiseerd kunt houden, allemaal op één
-                  handige plek.
-                </p>
-              </blockquote>
-              <p className="text-gray-500 dark:text-gray-400">
-                Bovendien maakt onze gebruiksvriendelijke interface het voor
-                iedereen gemakkelijk om te gebruiken, ongeacht uw
-                ervaringsniveau. Laat het beheer van uw financiën u niet
-                stressen - probeer vandaag nog onze online boekhoudtoepassing en
-                zie hoe deze u kan helpen de controle over uw bedrijf te
-                krijgen.
-              </p>
-            </div>
-            <div className="py-52"></div>
-          </div>
+          <div className="-mt-10 -ml-20 h-96 w-96 animate-blop rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition"></div>
         </div>
       </div>
     </div>

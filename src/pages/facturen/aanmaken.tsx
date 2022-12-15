@@ -4,6 +4,7 @@ import { REDIRECT_URL } from "../../Components/data/redirect";
 import Header from "../../Components/Header";
 import Sidebar from "../../Components/Sidebar";
 import { productsSoap } from "../../Components/data/productsSoap";
+import { allProductsSoap } from "../../Components/data/allProductsSoap";
 import { OfficesSoap } from "../../Components/data/officesSoap";
 import { addInvoicesSoap } from "../../Components/data/addInvoiceSoap";
 import { relatiesSoap } from "../../Components/data/relatiesSoap";
@@ -287,6 +288,37 @@ function Aanmaken() {
     xmlhttp.send(sr);
   }
 
+  function getAllProducts() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(
+      "POST",
+      "https://api.accounting.twinfield.com/webservices/processxml.asmx?wsdl",
+      true
+    );
+    const sr = allProductsSoap({ accesToken, companyCode });
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+          const parser = new DOMParser();
+          const el = parser.parseFromString(xmlhttp.responseText, "text/html");
+          const firstRelaties: any = el.childNodes[1]?.textContent;
+          console.log(el);
+          {
+            /* const parseHtml = new DOMParser();
+          const xmlDoc2 = parseHtml.parseFromString(firstRelaties, "text/xml");
+          const suppliers: any = xmlDoc2.getElementsByTagName("article")[0];
+          console.log(suppliers);
+          const demension: any = suppliers.getElementsByTagName("header")[0];
+          const lines: any = suppliers.getElementsByTagName("lines")[0]; */
+          }
+        }
+      }
+    };
+    // Send the POST request
+    xmlhttp.setRequestHeader("Content-Type", "text/xml");
+    xmlhttp.send(sr);
+  }
+
   function selectCustomers() {
     reveal();
     getRelaties();
@@ -348,7 +380,7 @@ function Aanmaken() {
                         </div>
                       )}
                     </div>
-                    <div>
+                    <div className="flex">
                       <Link href={`/relaties/toevoegen#id_token=${fullsplit}`}>
                         <button
                           className="dropdown-label ml-2 mt-4 flex flex-col rounded-xl bg-white/10 p-1.5
@@ -357,6 +389,13 @@ function Aanmaken() {
                           Relatie toevoegen
                         </button>
                       </Link>
+                      <button
+                        className="dropdown-label ml-2 mt-4 flex flex-col rounded-xl bg-white/10 p-1.5
+                 text-white hover:bg-white/20"
+                        onClick={getAllProducts}
+                      >
+                        getAll products
+                      </button>
                     </div>
                   </div>
                   {chosenCustomer}

@@ -120,7 +120,7 @@ const Home = () => {
       </Head>
 
       <div className="flex flex-col">
-        <div className="z-10" ref={parentHeader}>
+        <div className="z-30" ref={parentHeader}>
           <Header
             activeDash={true}
             fullSplit={fullsplit}
