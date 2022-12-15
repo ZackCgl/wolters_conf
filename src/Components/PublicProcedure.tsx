@@ -82,9 +82,42 @@ function PublicProcedure({ handleLogin }: Props) {
           </div>
         </div>
       </div>
-      <div className="absolute">
+      <div className="lg:absolute lg:h-full">
         <div>
-          <div className="-mt-10 -ml-20 h-96 w-96 animate-blop rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition"></div>
+          <div className="-mt-10 -ml-20 h-4 w-4 animate-blop rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition lg:h-96 lg:w-96"></div>
+          <div className="md:hidden">
+            <div className="absolute -mt-96 mr-4 text-white">
+              <p className="-mt-20 text-gray-500 dark:text-gray-400">
+                Our online accounting application is designed to make it easier
+                than ever to manage your finances and stay on top of your
+                business. Our powerful features allow you to upload and store
+                your invoices, as well as create and send invoices to your
+                clients with ease. This means you can keep track of your income
+                and expenses, and stay organized with your accounting, all in
+                one convenient place. Plus, our user-friendly interface makes it
+                easy for anyone to use, no matter your experience level. Don't
+                let managing your finances stress you out - try our online
+                accounting application today and see how it can help you take
+                control of your business.
+              </p>
+              <blockquote className="my-4 border-l-4 border-gray-300 bg-gray-50 p-4 dark:border-gray-500 dark:bg-gray-800">
+                <p className="text-xl font-medium italic leading-relaxed text-gray-900 dark:text-white">
+                  "Dit betekent dat u uw inkomsten en uitgaven kunt bijhouden en
+                  uw boekhouding georganiseerd kunt houden, allemaal op één
+                  handige plek. "
+                </p>
+              </blockquote>
+              <p className="text-gray-500 dark:text-gray-400">
+                Bovendien maakt onze gebruiksvriendelijke interface het voor
+                iedereen gemakkelijk om te gebruiken, ongeacht uw
+                ervaringsniveau. Laat het beheer van uw financiën u niet
+                stressen - probeer vandaag nog onze online boekhoudtoepassing en
+                zie hoe deze u kan helpen de controle over uw bedrijf te
+                krijgen.
+              </p>
+            </div>
+            <div className="py-52"></div>
+          </div>
         </div>
       </div>
     </div>
