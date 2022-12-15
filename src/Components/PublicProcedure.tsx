@@ -1,24 +1,78 @@
+import { BsArrowRight } from "react-icons/bs";
+
 interface Props {
   handleLogin: () => void;
 }
 
 function PublicProcedure({ handleLogin }: Props) {
   return (
-    <div className=" container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-        <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
-          <h3 onClick={handleLogin} className="text-2xl font-bold">
-            Sign In →
-          </h3>
-          <div className="text-lg">
-            Sign in from your account - We offer the greatest features
-            available.
-          </div>
+    <div className="flex items-center">
+      <div className="container mt-10 flex flex-col px-4 py-16 font-medium text-white ">
+        <h1 className="text-7xl">Het beheren van </h1>
+        <h1 className="text-7xl">uw financiën is</h1>
+        <h1 className="text-7xl">een fluitje van een cent</h1>
+        <div className="ml-1">
+          <p className="mt-4 text-2xl font-light">
+            Vereenvoudig uw boekhoudproces en maak meer tijd vrij voor uw
+            bedrijf.
+          </p>
+          <p className="text-2xl font-light">
+            Met onze tool regel je snel je declaraties, facturen en andere
+            financiële documenten
+          </p>
         </div>
-        <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
-          <h3 className="text-2xl font-bold">Documentation →</h3>
-          <div className="text-lg">
-            Learn more about Ruby Finance, our docs are open source.
+        <div>
+          <button
+            type="button"
+            className="mt-6 flex items-center rounded-xl bg-purple-600 p-5 text-white hover:bg-purple-700"
+            onClick={handleLogin}
+          >
+            Neem Ruby gratis <BsArrowRight className="ml-2" />
+          </button>
+        </div>
+      </div>
+      <div className="z-10 flex min-h-screen items-center justify-center px-16">
+        <div className="relative w-full max-w-lg">
+          <div className="absolute top-0 -left-4 h-72 w-72 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
+          <div className="animation-delay-2000 absolute top-0 -right-4 h-72 w-72 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
+          <div className="animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 animate-blob rounded-full bg-pink-300 opacity-70 mix-blend-multiply blur-xl filter"></div>
+          <div className="relative m-8 space-y-4">
+            <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
+              <div className="flex-1">
+                <div className="h-8 w-48 items-center rounded bg-gray-100">
+                  <p className="p-1 font-medium text-black">
+                    Facturen aanmaken
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="h-6 w-24 rounded-lg bg-purple-300"></div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
+              <div className="flex-1">
+                <div className="h-8 w-56 items-center rounded bg-gray-100">
+                  <p className="p-1 font-medium text-black">
+                    Bonnetjes uploaden
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="h-6 w-20 rounded-lg bg-yellow-300"></div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
+              <div className="flex-1">
+                <div className="h-8 w-48 items-center rounded bg-gray-100">
+                  <p className="p-1 font-medium text-black">
+                    Statistieken bekijken
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="h-6 w-28 rounded-lg bg-pink-300"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

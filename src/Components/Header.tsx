@@ -81,7 +81,7 @@ function Header({
                     onClick={() => handleLogin()}
                     className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20 md:hidden"
                   >
-                    Sign in
+                    Inloggen
                   </button>
                 )}
                 {accesToken && (
@@ -190,99 +190,115 @@ function Header({
             id="navbar-default"
           >
             <ul className="md: z-10 flex flex-col items-center justify-center rounded-lg border border-gray-100 bg-black font-bold md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-lg md:backdrop-blur-sm">
-              <li>
-                <Link href={`/#id_token=${fullSplit}`}>
-                  <p
+              {accesToken && (
+                <li>
+                  <Link href={`/#id_token=${fullSplit}`}>
+                    <p
+                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                        activeDash ? "text-gray-400" : "text-white"
+                      } `}
+                      aria-current="page"
+                    >
+                      Dashboard
+                    </p>
+                  </Link>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <Link href={`/facturen#id_token=${fullSplit}`}>
+                    <p
+                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                        activeFac ? "text-gray-400" : "text-white"
+                      } `}
+                    >
+                      Facturen
+                    </p>
+                  </Link>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <Link href={`/crediteuren#id_token=${fullSplit}`}>
+                    <p
+                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                        activeCred ? "text-gray-400" : "text-white"
+                      } `}
+                    >
+                      Crediteuren
+                    </p>
+                  </Link>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <Link href={`/relaties#id_token=${fullSplit}`}>
+                    <p
+                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                        activeRel ? "text-gray-400" : "text-white"
+                      } `}
+                    >
+                      Relaties
+                    </p>
+                  </Link>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <a
+                    href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeDash ? "text-gray-400" : "text-white"
+                      activeOff ? "text-gray-400" : "text-white"
                     } `}
-                    aria-current="page"
                   >
-                    Dashboard
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/facturen#id_token=${fullSplit}`}>
-                  <p
+                    Offertes
+                  </a>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <Link href={`/producten#id_token=${fullSplit}`}>
+                    <p
+                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                        activeBank ? "text-gray-400" : "text-white"
+                      } `}
+                    >
+                      Producten
+                    </p>
+                  </Link>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <a
+                    href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeFac ? "text-gray-400" : "text-white"
+                      activeRapp ? "text-gray-400" : "text-white"
                     } `}
                   >
-                    Facturen
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/crediteuren#id_token=${fullSplit}`}>
-                  <p
+                    Rapportages
+                  </a>
+                </li>
+              )}
+              {accesToken && (
+                <li>
+                  <a
+                    href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeCred ? "text-gray-400" : "text-white"
+                      activeAgenda ? "text-gray-400" : "text-white"
                     } `}
                   >
-                    Crediteuren
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/relaties#id_token=${fullSplit}`}>
-                  <p
-                    className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeRel ? "text-gray-400" : "text-white"
-                    } `}
-                  >
-                    Relaties
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                    activeOff ? "text-gray-400" : "text-white"
-                  } `}
-                >
-                  Offertes
-                </a>
-              </li>
-              <li>
-                <Link href={`/producten#id_token=${fullSplit}`}>
-                  <p
-                    className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeBank ? "text-gray-400" : "text-white"
-                    } `}
-                  >
-                    Producten
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                    activeRapp ? "text-gray-400" : "text-white"
-                  } `}
-                >
-                  Rapportages
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                    activeAgenda ? "text-gray-400" : "text-white"
-                  } `}
-                >
-                  Agenda
-                </a>
-              </li>
+                    Agenda
+                  </a>
+                </li>
+              )}
               <li>
                 {!accesToken && (
                   <button
                     onClick={() => handleLogin()}
                     className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20"
                   >
-                    Sign in
+                    Inloggen
                   </button>
                 )}
                 {accesToken && (
