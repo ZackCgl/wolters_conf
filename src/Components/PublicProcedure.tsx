@@ -88,23 +88,17 @@ function PublicProcedure({ handleLogin }: Props) {
           <div className="md:hidden">
             <div className="absolute -mt-96 mr-4 text-white">
               <p className="-mt-20 text-gray-500 dark:text-gray-400">
-                Our online accounting application is designed to make it easier
-                than ever to manage your finances and stay on top of your
-                business. Our powerful features allow you to upload and store
-                your invoices, as well as create and send invoices to your
-                clients with ease. This means you can keep track of your income
-                and expenses, and stay organized with your accounting, all in
-                one convenient place. Plus, our user-friendly interface makes it
-                easy for anyone to use, no matter your experience level. Don't
-                let managing your finances stress you out - try our online
-                accounting application today and see how it can help you take
-                control of your business.
+                Onze online boekhoudapplicatie is ontworpen om het gemakkelijker
+                dan ooit te maken om uw financiën te beheren en de baas te
+                blijven over uw bedrijf. Met onze krachtige functies kunt u uw
+                facturen uploaden en opslaan, en gemakkelijk facturen maken en
+                verzenden naar uw klanten.
               </p>
               <blockquote className="my-4 border-l-4 border-gray-300 bg-gray-50 p-4 dark:border-gray-500 dark:bg-gray-800">
                 <p className="text-xl font-medium italic leading-relaxed text-gray-900 dark:text-white">
-                  "Dit betekent dat u uw inkomsten en uitgaven kunt bijhouden en
+                  Dit betekent dat u uw inkomsten en uitgaven kunt bijhouden en
                   uw boekhouding georganiseerd kunt houden, allemaal op één
-                  handige plek. "
+                  handige plek.
                 </p>
               </blockquote>
               <p className="text-gray-500 dark:text-gray-400">
