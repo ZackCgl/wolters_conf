@@ -390,7 +390,7 @@ function Aanmaken() {
                         </button>
                       </Link>
                       <button
-                        className="dropdown-label ml-2 mt-4 flex flex-col rounded-xl bg-white/10 p-1.5
+                        className=" ml-2 mt-4 flex flex-col rounded-xl bg-white/10 p-1.5
                  text-white hover:bg-white/20"
                         onClick={getAllProducts}
                       >
