@@ -115,7 +115,7 @@ function Index() {
       <div className="flex flex-col">
         <div className="z-10">
           <Header
-            activeRel={true}
+            activePro={true}
             fullSplit={fullsplit}
             handleLogin={handleLogin}
             handleLogout={handleLogout}

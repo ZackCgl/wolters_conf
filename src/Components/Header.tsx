@@ -252,20 +252,6 @@ function Header({
               )}
               {accesToken && (
                 <li>
-                  <a
-                    href="#"
-                    className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeOff
-                        ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
-                        : "text-white"
-                    } `}
-                  >
-                    Offertes
-                  </a>
-                </li>
-              )}
-              {accesToken && (
-                <li>
                   <Link href={`/producten#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
@@ -279,6 +265,20 @@ function Header({
                   </Link>
                 </li>
               )}
+              {accesToken && (
+                <li>
+                  <p
+                    className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                      activeOff
+                        ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                        : "text-white"
+                    } `}
+                  >
+                    Offertes
+                  </p>
+                </li>
+              )}
+
               {accesToken && (
                 <li>
                   <a
