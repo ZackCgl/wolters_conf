@@ -52,7 +52,7 @@ function Accordion() {
                   get started
                 </a>{" "}
                 and start developing websites even faster with components on top
-                of Tailwind CSS.
+                of Tailwind Css.
               </p>
             </div>
           </div>
