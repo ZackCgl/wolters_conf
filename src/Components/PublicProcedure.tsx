@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 interface Props {
@@ -28,20 +29,21 @@ function PublicProcedure({ handleLogin }: Props) {
           </p>
         </div>
         <div>
-          <button
-            type="button"
-            className="mt-6 flex items-center rounded-xl bg-purple-600 p-5 text-white hover:bg-purple-700"
-            onClick={handleLogin}
-          >
-            Neem Ruby gratis <BsArrowRight className="ml-2" />
-          </button>
+          <Link href="https://rubyfinance.nl/">
+            <button
+              type="button"
+              className="mt-6 flex items-center rounded-xl bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-5 text-white "
+            >
+              Neem Ruby Direct <BsArrowRight className="ml-2" />
+            </button>
+          </Link>
         </div>
       </div>
       <div className="-ml-10 min-h-screen items-center justify-center lg:z-10 lg:flex">
         <div className="relative w-full max-w-lg">
-          <div className="absolute top-0 -left-4 h-10 w-10 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
-          <div className="animation-delay-2000 absolute top-0 -right-4 h-10 w-10 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
-          <div className="animation-delay-4000 absolute -bottom-8 left-20 h-10 w-10 animate-blob rounded-full bg-pink-300 opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
+          <div className="absolute top-0 -left-4 h-10 w-10 animate-blob rounded-full bg-[#496adc] opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
+          <div className="animation-delay-2000 absolute top-0 -right-4 h-10 w-10 animate-blob rounded-full bg-[#c57bfe] opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
+          <div className="animation-delay-4000 absolute -bottom-8 left-20 h-10 w-10 animate-blob rounded-full bg-[#c57bfe] opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
           <div className="relative m-8 space-y-4">
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
               <div className="flex-1">
@@ -52,7 +54,7 @@ function PublicProcedure({ handleLogin }: Props) {
                 </div>
               </div>
               <div>
-                <div className="h-6 w-24 rounded-lg bg-purple-300"></div>
+                <div className="h-6 w-24 rounded-lg bg-[#496adc]"></div>
               </div>
             </div>
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
@@ -64,7 +66,7 @@ function PublicProcedure({ handleLogin }: Props) {
                 </div>
               </div>
               <div>
-                <div className="h-6 w-20 rounded-lg bg-yellow-300"></div>
+                <div className="h-6 w-20 rounded-lg bg-[#a260f7]"></div>
               </div>
             </div>
             <div className="flex items-center justify-between space-x-8 rounded-lg bg-white p-5">
@@ -76,7 +78,7 @@ function PublicProcedure({ handleLogin }: Props) {
                 </div>
               </div>
               <div>
-                <div className="h-6 w-20 rounded-lg bg-pink-300"></div>
+                <div className="h-6 w-20 rounded-lg bg-[#c57bfe]"></div>
               </div>
             </div>
           </div>

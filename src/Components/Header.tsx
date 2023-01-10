@@ -43,11 +43,11 @@ function Header({
           <Link href={`/#id_token=${fullSplit}`}>
             {" "}
             <Image
-              className="ml-4 cursor-pointer"
-              src="https://i.imgur.com/S67aq4a.png"
+              className="ml-2 mt-1 cursor-pointer"
+              src="/RubyLogo.png"
               alt="ruby_logo"
-              height={100}
-              width={80}
+              height={200}
+              width={150}
             />
           </Link>
 
