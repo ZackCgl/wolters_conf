@@ -14,16 +14,20 @@ function Sidebar({ fullSplit, activeIns, activeFaq }: Props) {
       <Link href={`/faq/#id_token=${fullSplit}`}>
         <AiOutlineQuestionCircle
           className={`fixed bottom-12 left-4 h-7 w-7 cursor-pointer 
-          hover:text-purple-500 ${
-            activeFaq ? "text-purple-500" : "text-white"
+          rounded-lg from-[#496adc] to-[#c57bfe] p-1 hover:bg-gradient-to-r ${
+            activeFaq
+              ? "rounded-lg bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-1"
+              : "text-white"
           }`}
         />
       </Link>
       <Link href={`/instellingen/#id_token=${fullSplit}`}>
         <FiSettings
           className={`fixed bottom-4 left-4 h-7 w-7 cursor-pointer 
-          hover:text-purple-500 ${
-            activeIns ? "text-purple-500" : "text-white"
+          rounded-lg from-[#496adc] to-[#c57bfe] p-1 hover:bg-gradient-to-r ${
+            activeIns
+              ? "rounded-lg bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-1"
+              : "text-white"
           }`}
         />
       </Link>

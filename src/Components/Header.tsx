@@ -14,6 +14,7 @@ interface Props {
   activeOff?: boolean;
   activeRapp?: boolean;
   activeBank?: boolean;
+  activePro?: boolean;
   activeAgenda?: boolean;
 }
 
@@ -28,6 +29,7 @@ function Header({
   activeRel,
   activeOff,
   activeRapp,
+  activePro,
   activeBank,
   activeAgenda,
 }: Props) {
@@ -89,7 +91,7 @@ function Header({
                     onClick={() => handleLogout()}
                     className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
                   >
-                    Sign Out
+                    Log uit
                   </button>
                 )}
 
@@ -192,7 +194,9 @@ function Header({
                   <Link href={`/#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeDash ? "text-gray-400" : "text-white"
+                        activeDash
+                          ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                          : "text-white"
                       } `}
                       aria-current="page"
                     >
@@ -206,7 +210,9 @@ function Header({
                   <Link href={`/facturen#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeFac ? "text-gray-400" : "text-white"
+                        activeFac
+                          ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                          : "text-white"
                       } `}
                     >
                       Facturen
@@ -219,7 +225,9 @@ function Header({
                   <Link href={`/crediteuren#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeCred ? "text-gray-400" : "text-white"
+                        activeCred
+                          ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                          : "text-white"
                       } `}
                     >
                       Crediteuren
@@ -232,7 +240,9 @@ function Header({
                   <Link href={`/relaties#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeRel ? "text-gray-400" : "text-white"
+                        activeRel
+                          ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                          : "text-white"
                       } `}
                     >
                       Relaties
@@ -245,7 +255,9 @@ function Header({
                   <a
                     href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeOff ? "text-gray-400" : "text-white"
+                      activeOff
+                        ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                        : "text-white"
                     } `}
                   >
                     Offertes
@@ -257,7 +269,9 @@ function Header({
                   <Link href={`/producten#id_token=${fullSplit}`}>
                     <p
                       className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeBank ? "text-gray-400" : "text-white"
+                        activePro
+                          ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                          : "text-white"
                       } `}
                     >
                       Producten
@@ -270,7 +284,9 @@ function Header({
                   <a
                     href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeRapp ? "text-gray-400" : "text-white"
+                      activeRapp
+                        ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                        : "text-white"
                     } `}
                   >
                     Rapportages
@@ -282,7 +298,9 @@ function Header({
                   <a
                     href="#"
                     className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                      activeAgenda ? "text-gray-400" : "text-white"
+                      activeAgenda
+                        ? "inline bg-gradient-to-r from-[#496adc] to-[#c57bfe] text-white"
+                        : "text-white"
                     } `}
                   >
                     Agenda
@@ -303,7 +321,7 @@ function Header({
                     onClick={() => handleLogout()}
                     className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-2 text-white hover:bg-white/20"
                   >
-                    Sign Out
+                    Log uit
                   </button>
                 )}
               </li>

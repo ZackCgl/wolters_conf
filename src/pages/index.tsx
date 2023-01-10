@@ -149,13 +149,13 @@ const Home = () => {
                 <div ref={parent}>
                   <p
                     onClick={reveal}
-                    className="dropdown-label text-1xl flex cursor-pointer font-semibold  text-[#496adc] hover:text-[#a260f7] "
+                    className="dropdown-label text-1xl flex cursor-pointer rounded-lg bg-gradient-to-r from-[#496adc] to-[#c57bfe]  p-2 font-semibold text-white"
                   >
                     Selecteer administratie
                     <RiArrowDropDownFill className="h-7 w-7" />
                   </p>
                   {show && (
-                    <p className="dropdown-content text-1xl flex font-normal text-white ">
+                    <p className="dropdown-content text-1xl mt-1 flex font-normal text-white ">
                       {office}
                     </p>
                   )}
@@ -185,8 +185,8 @@ const Home = () => {
                       </p>
                       <Link href="/faq">
                         <p
-                          className="flex items-center gap-4 rounded-xl bg-white/10 p-4 text-white 
-                hover:bg-white/20"
+                          className="flex items-center gap-4 rounded-xl bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-4 text-white 
+                "
                         >
                           Ga naar FAQ
                           <svg
