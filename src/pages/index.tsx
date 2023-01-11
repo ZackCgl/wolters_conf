@@ -143,25 +143,30 @@ const Home = () => {
           <div>
             <Sidebar fullSplit={fullsplit} />
           </div>
-          <div className="ml-8 mt-28 sm:flex lg:flex" ref={parentPage}>
+          <div className="ml-2 mt-28  lg:flex" ref={parentPage}>
             {accesToken && (
-              <div className="flex">
-                <div ref={parent}>
-                  <p
-                    onClick={reveal}
-                    className="dropdown-label text-1xl flex cursor-pointer rounded-lg bg-gradient-to-r from-[#496adc] to-[#c57bfe]  p-2 font-semibold text-white"
-                  >
-                    Selecteer administratie
-                    <RiArrowDropDownFill className="h-7 w-7" />
-                  </p>
-                  {show && (
-                    <p className="dropdown-content text-1xl mt-1 flex font-normal text-white ">
-                      {office}
+              <div className="grid grid-cols-1 lg:grid-cols-3">
+                <div
+                  ref={parent}
+                  className="flex w-full items-center lg:w-64 lg:items-start lg:p-0"
+                >
+                  <div className="flex flex-col">
+                    <p
+                      onClick={reveal}
+                      className="dropdown-label text-1xl flex cursor-pointer rounded-lg bg-gray-700  p-2 font-semibold text-white"
+                    >
+                      Selecteer administratie
+                      <RiArrowDropDownFill className="h-7 w-7" />
                     </p>
-                  )}
+                    {show && (
+                      <p className="dropdown-content text-1xl mt-1 flex font-normal text-white ">
+                        {office}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
-                <div className="mr-4 flex flex-col lg:ml-4">
+                <div className="mr-8 flex flex-col items-center lg:mr-4 lg:-ml-40 lg:items-start">
                   <div className="mt-14 text-2xl font-bold text-white">
                     {getGreeting()}
                   </div>
@@ -209,7 +214,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="hidden flex-col text-white lg:ml-80 lg:mt-20 lg:flex">
+                <div className="mt-10 mb-20 flex-col text-white lg:mt-10 lg:flex">
                   {data_res?.map((article: any, index: number) => {
                     return (
                       <div key={index} className="mt-6 -ml-0 lg:-ml-40">

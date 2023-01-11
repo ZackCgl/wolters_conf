@@ -81,11 +81,11 @@ function Header({
           </button>
           {toggle && (
             <div className=" w-full lg:hidden" id="navbar-default">
-              <ul className="z-10 mt-4 flex flex-col justify-center rounded-lg bg-gradient-to-b from-[#5a6cf4fc] to-[#313b7afa] p-4 md:space-y-3 ">
+              <ul className="z-10 mt-4 flex flex-col justify-center rounded-lg bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-4 md:space-y-3 ">
                 {!accesToken && (
                   <button
                     onClick={() => handleLogin()}
-                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+                    className="mb-4 mt-4 ml-2 flex max-w-xs flex-col gap-4 rounded-xl  bg-black p-4 text-white"
                   >
                     Inloggen
                   </button>
@@ -98,96 +98,107 @@ function Header({
                     Log uit
                   </button>
                 )}
-
-                <li>
-                  <Link href={`/#id_token=${fullSplit}`}>
-                    <p
-                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeDash ? "text-gray-400" : "text-white"
-                      } `}
-                      aria-current="page"
-                    >
-                      Dashboard
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/facturen#id_token=${fullSplit}`}>
-                    <p
-                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeFac ? "text-gray-400" : "text-white"
-                      } `}
-                    >
-                      Facturen
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/crediteuren#id_token=${fullSplit}`}>
-                    <p
-                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeCred ? "text-gray-400" : "text-white"
-                      } `}
-                    >
-                      Crediteuren
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/relaties#id_token=${fullSplit}`}>
-                    <p
-                      className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
-                        activeRel ? "text-gray-400" : "text-white"
-                      } `}
-                    >
-                      Relaties
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <p className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
-                    Offertes
-                  </p>
-                </li>
-                <li>
-                  <Link href={`/producten#id_token=${fullSplit}`}>
-                    <p className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
-                      Producten
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-                  >
-                    Rapportages
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-                  >
-                    Kennisbank
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-                  >
-                    Agenda
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-                  >
-                    Settings
-                  </a>
-                </li>
+                {accesToken && (
+                  <div className="">
+                    <li>
+                      <Link href={`/#id_token=${fullSplit}`}>
+                        <p
+                          className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                            activeDash
+                              ? "text-lg font-bold text-black"
+                              : "text-white"
+                          } `}
+                          aria-current="page"
+                        >
+                          Dashboard
+                        </p>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={`/facturen#id_token=${fullSplit}`}>
+                        <p
+                          className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                            activeFac
+                              ? "text-lg font-bold text-black"
+                              : "text-white"
+                          } `}
+                        >
+                          Facturen
+                        </p>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={`/crediteuren#id_token=${fullSplit}`}>
+                        <p
+                          className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                            activeCred
+                              ? "text-lg font-bold text-black"
+                              : "text-white"
+                          } `}
+                        >
+                          Crediteuren
+                        </p>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={`/relaties#id_token=${fullSplit}`}>
+                        <p
+                          className={`block rounded py-2 pl-3  pr-4 md:bg-transparent md:p-0 ${
+                            activeRel
+                              ? "text-lg font-bold text-black"
+                              : "text-white"
+                          } `}
+                        >
+                          Relaties
+                        </p>
+                      </Link>
+                    </li>
+                    <li>
+                      <p className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
+                        Offertes
+                      </p>
+                    </li>
+                    <li>
+                      <Link href={`/producten#id_token=${fullSplit}`}>
+                        <p className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
+                          Producten
+                        </p>
+                      </Link>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+                      >
+                        Rapportages
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+                      >
+                        Kennisbank
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+                      >
+                        Agenda
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0  md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+                      >
+                        Settings
+                      </a>
+                    </li>
+                  </div>
+                )}
               </ul>
             </div>
           )}
