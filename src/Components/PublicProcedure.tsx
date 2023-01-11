@@ -7,7 +7,7 @@ interface Props {
 
 function PublicProcedure({ handleLogin }: Props) {
   return (
-    <div className=" mt-10 grid grid-cols-1 items-center lg:grid-cols-2 ">
+    <div className=" mt-20 grid grid-cols-1 items-center lg:mt-10 lg:grid-cols-2 ">
       <div className="container flex flex-col py-16 font-medium text-white lg:mt-10 ">
         <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
           Het beheren van{" "}
@@ -39,7 +39,7 @@ function PublicProcedure({ handleLogin }: Props) {
           </Link>
         </div>
       </div>
-      <div className="-ml-10 min-h-screen items-center justify-center lg:z-10 lg:flex">
+      <div className="-ml-10 mb-10 items-center justify-center lg:z-10 lg:flex">
         <div className="relative w-full max-w-lg">
           <div className="absolute top-0 -left-4 h-10 w-10 animate-blob rounded-full bg-[#496adc] opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
           <div className="animation-delay-2000 absolute top-0 h-10 w-10 animate-blob rounded-full bg-[#c57bfe] opacity-70 mix-blend-multiply blur-xl filter lg:h-72 lg:w-72"></div>
