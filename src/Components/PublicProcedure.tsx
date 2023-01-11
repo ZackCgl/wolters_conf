@@ -84,6 +84,11 @@ function PublicProcedure({ handleLogin }: Props) {
           </div>
         </div>
       </div>
+      <div className="absolute">
+        <div>
+          <div className="-mt-10 h-10 w-10 animate-blop  rounded-full bg-purple-200 opacity-80 mix-blend-multiply blur-xl filter hover:opacity-80 hover:transition lg:-ml-20 lg:h-96 lg:w-96"></div>
+        </div>
+      </div>
     </div>
   );
 }
