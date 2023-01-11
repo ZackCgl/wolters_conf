@@ -32,7 +32,7 @@ function PublicProcedure({ handleLogin }: Props) {
           <Link href="https://rubyfinance.nl/">
             <button
               type="button"
-              className="mt-6 flex items-center rounded-xl bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-5 text-white "
+              className="lg:text-md mt-6 flex items-center rounded-xl bg-gradient-to-r from-[#496adc] to-[#c57bfe] p-3 text-sm text-white lg:p-5 "
             >
               Neem Ruby Direct <BsArrowRight className="ml-2" />
             </button>
