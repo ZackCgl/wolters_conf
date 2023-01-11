@@ -8,7 +8,7 @@ interface Props {
 function PublicProcedure({ handleLogin }: Props) {
   return (
     <div className=" mt-20 grid grid-cols-1 items-center lg:mt-10 lg:grid-cols-2 ">
-      <div className="container flex flex-col py-16 font-medium text-white lg:mt-10 ">
+      <div className="container -ml-2 flex flex-col py-16 font-medium text-white lg:mt-10 ">
         <h1 className="md:5xl text-4xl lg:text-5xl xl:text-7xl">
           Het beheren van{" "}
         </h1>
