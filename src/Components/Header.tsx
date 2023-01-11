@@ -42,17 +42,21 @@ function Header({
     <div>
       <nav className="fixed h-14 w-screen border-gray-200 px-2 py-2.5 backdrop-blur-sm sm:px-4">
         <div className="container mx-auto flex flex-wrap items-center justify-between ">
-          <Link href={`/#id_token=${fullSplit}`}>
-            {" "}
-            <Image
-              className="ml-2 mt-1 cursor-pointer"
-              src="/RubyLogo.png"
-              alt="ruby_logo"
-              height={200}
-              width={150}
-            />
-          </Link>
-
+          <div className="flex">
+            <Link href={`/#id_token=${fullSplit}`}>
+              {" "}
+              <Image
+                className="ml-2 mt-1 h-10 w-24 cursor-pointer lg:h-14 lg:w-36"
+                src="/RubyLogo.png"
+                alt="ruby_logo"
+                height={200}
+                width={150}
+              />
+            </Link>
+            <p className="lg:text-md mt-4 -ml-2 text-sm font-semibold text-white lg:mt-7">
+              App
+            </p>
+          </div>
           <button
             onClick={handleMobile}
             type="button"
